@@ -13,6 +13,8 @@ position = Vector2i(9, 36)
 size = Vector2i(600, 475)
 script = ExtResource("2_ofmyw")
 
+[node name="HTTPRequest" type="HTTPRequest" parent="Window"]
+
 [node name="VBoxContainer" type="VBoxContainer" parent="Window"]
 offset_left = 28.0
 offset_top = 18.0
@@ -37,7 +39,7 @@ layout_mode = 2
 placeholder_text = "Amazing Task!!"
 wrap_mode = 1
 
-[node name="Button2" type="Button" parent="Node2D/Window/VBoxContainer"]
+[node name="Button2" type="Button" parent="Window/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Generate Steps with AI 🪄"
@@ -60,17 +62,17 @@ layout_mode = 2
 size_flags_vertical = 0
 placeholder_text = "Step 1"
 
-[node name="LineEdit4" type="LineEdit" parent="Node2D/Window/VBoxContainer/ScrollContainer/StepsContainer"]
+[node name="LineEdit4" type="LineEdit" parent="Window/VBoxContainer/ScrollContainer/StepsContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 placeholder_text = "Step 2"
 
-[node name="LineEdit5" type="LineEdit" parent="Node2D/Window/VBoxContainer/ScrollContainer/StepsContainer"]
+[node name="LineEdit5" type="LineEdit" parent="Window/VBoxContainer/ScrollContainer/StepsContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 placeholder_text = "Step 3"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Node2D/Window/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Window/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 8
@@ -90,5 +92,3 @@ text = "Add New Step"
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Remove Step"
-
-[node name="HTTPRequest" type="HTTPRequest" parent="Node2D/Window"]

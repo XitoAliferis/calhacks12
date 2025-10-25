@@ -9,7 +9,7 @@ extends Window
 @onready var ai_button = $VBoxContainer/Button2
 @onready var scroll = $VBoxContainer/ScrollContainer
 @onready var http_request = $HTTPRequest  # reference to the HTTPRequest node
-@onready var file_dialog = $FileDialog
+
 const OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 const OPENROUTER_KEY = ""
 
