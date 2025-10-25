@@ -17,6 +17,7 @@ func _ready() -> void:
 
 func _on_close_requested() -> void:
 	hide()
+	global.creating_task = false
 
 func _on_save() -> void:
 	var task_name = task_name_input.text.strip_edges()
@@ -38,3 +39,4 @@ func _on_save() -> void:
 
 	# Optionally hide the window after saving
 	hide()
+	global.creating_task = false
