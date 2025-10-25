@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://bvhsi72x780v8"]
+[gd_scene load_steps=5 format=3 uid="uid://bvhsi72x780v8"]
 
 [ext_resource type="Script" uid="uid://m4c5k4xudguh" path="res://scripts/blank_area.gd" id="1_t08ef"]
+[ext_resource type="Texture2D" uid="uid://celcs7g1ei76m" path="res://assets/buttons/task marker.png" id="2_25tjb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_25tjb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_imn18"]
 
 [node name="blank_area" type="Node2D"]
 scale = Vector2(4, 4)
@@ -11,5 +16,20 @@ offset_left = -8.0
 offset_top = -8.0
 offset_right = 8.0
 offset_bottom = 8.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_25tjb")
+
+[node name="TaskMarkerButton" type="Button" parent="."]
+visible = false
+offset_left = 12.5
+offset_top = 11.5
+offset_right = 37.5
+offset_bottom = 35.5
+rotation = 3.1415927
+theme_override_styles/focus = SubResource("StyleBoxEmpty_imn18")
+icon = ExtResource("2_25tjb")
+flat = true
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="mouse_entered" from="TaskMarkerButton" to="." method="_on_task_marker_button_mouse_entered"]
+[connection signal="mouse_exited" from="TaskMarkerButton" to="." method="_on_task_marker_button_mouse_exited"]
+[connection signal="pressed" from="TaskMarkerButton" to="." method="_on_task_marker_button_pressed"]
