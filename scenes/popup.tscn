@@ -56,18 +56,7 @@ layout_mode = 2
 placeholder_text = "Amazing Task!!"
 wrap_mode = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Node2D/Window/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_constants/separation = 8
-
-[node name="Button" type="Button" parent="Node2D/Window/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme = SubResource("Theme_gxv0h")
-text = "Insert File 📁"
-
-[node name="Button2" type="Button" parent="Node2D/Window/VBoxContainer/HBoxContainer2"]
+[node name="Button2" type="Button" parent="Node2D/Window/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Generate Steps with AI 🪄"
@@ -90,6 +79,16 @@ layout_mode = 2
 size_flags_vertical = 0
 placeholder_text = "Step 1"
 
+[node name="LineEdit4" type="LineEdit" parent="Node2D/Window/VBoxContainer/ScrollContainer/StepsContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+placeholder_text = "Step 2"
+
+[node name="LineEdit5" type="LineEdit" parent="Node2D/Window/VBoxContainer/ScrollContainer/StepsContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+placeholder_text = "Step 3"
+
 [node name="HBoxContainer" type="HBoxContainer" parent="Node2D/Window/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -110,3 +109,5 @@ text = "Add New Step"
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Remove Step"
+
+[node name="HTTPRequest" type="HTTPRequest" parent="Node2D/Window"]
