@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=4 uid="uid://djfp3lhbqp05l"]
+
+[ext_resource type="TileSet" uid="uid://ck4pdlhc3his1" path="res://resources/floor_tileset.tres" id="1_dt3su"]
+[ext_resource type="PackedScene" uid="uid://bvhsi72x780v8" path="res://scenes/blank_area.tscn" id="2_sx207"]
+
+[node name="RoomLayout1" type="Node2D"]
+
+[node name="Floor" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD7//z/BgAHAAgAAAD7//3/BgAHAAgAAAD7//7/BgAHAAgAAAD7////BgAHAAgAAAD7/wAABgAHAAgAAAD7/wEABgAHAAgAAAD8//z/BgAHAAgAAAD8//3/BgAHAAgAAAD8//7/BgAHAAgAAAD8////BgAHAAgAAAD8/wAABgAHAAgAAAD8/wEABgAHAAgAAAD9//z/BgAHAAgAAAD9//3/BgAHAAgAAAD9//7/BgAHAAgAAAD9////BgAHAAgAAAD9/wAABgAHAAgAAAD9/wEABgAHAAgAAAD+//z/BgAHAAgAAAD+//3/BgAHAAgAAAD+//7/BgAHAAgAAAD+////BgAHAAgAAAD+/wAABgAHAAgAAAD+/wEABgAHAAgAAAD///z/BgAHAAgAAAD///3/BgAHAAgAAAD///7/BgAHAAgAAAD/////BgAHAAgAAAD//wAABgAHAAgAAAD//wEABgAHAAgAAAAAAPz/BgAHAAgAAAAAAP3/BgAHAAgAAAAAAP7/BgAHAAgAAAAAAP//BgAHAAgAAAAAAAAABgAHAAgAAAAAAAEABgAHAAgAAAABAPz/BgAHAAgAAAABAP3/BgAHAAgAAAABAP7/BgAHAAgAAAABAP//BgAHAAgAAAABAAAABgAHAAgAAAABAAEABgAHAAgAAAACAPz/BgAHAAgAAAACAP3/BgAHAAgAAAACAP7/BgAHAAgAAAACAP//BgAHAAgAAAACAAAABgAHAAgAAAACAAEABgAHAAgAAAADAPz/BgAHAAgAAAADAP3/BgAHAAgAAAADAP7/BgAHAAgAAAADAP//BgAHAAgAAAADAAAABgAHAAgAAAADAAEABgAHAAgAAAAEAPz/BgAHAAgAAAAEAP3/BgAHAAgAAAAEAP7/BgAHAAgAAAAEAP//BgAHAAgAAAAEAAAABgAHAAgAAAAEAAEABgAHAAgAAAD7//v/BgACAAMAAAD8//v/BgACAAMAAAD9//v/BgACAAMAAAD+//v/BgACAAMAAAD///v/BgACAAMAAAAAAPv/BgACAAMAAAABAPv/BgACAAMAAAACAPv/BgACAAMAAAADAPv/BgACAAMAAAAEAPv/BgACAAMAAAD7//r/BgACAAIAAAD8//r/BgACAAIAAAD9//r/BgACAAIAAAD+//r/BgACAAIAAAD///r/BgACAAIAAAAAAPr/BgACAAIAAAABAPr/BgACAAIAAAACAPr/BgACAAIAAAADAPr/BgACAAIAAAAEAPr/BgACAAIAAAA=")
+tile_set = ExtResource("1_dt3su")
+
+[node name="blank_area" parent="." instance=ExtResource("2_sx207")]
+position = Vector2(208, -161)
+
+[node name="blank_area2" parent="." instance=ExtResource("2_sx207")]
+position = Vector2(-203, 61)
+
+[node name="blank_area3" parent="." instance=ExtResource("2_sx207")]
+position = Vector2(-207, -160)
+
+[node name="blank_area4" parent="." instance=ExtResource("2_sx207")]
+position = Vector2(-204, -51)
+
+[node name="blank_area5" parent="." instance=ExtResource("2_sx207")]
+position = Vector2(208, 64)
+
+[node name="blank_area6" parent="." instance=ExtResource("2_sx207")]
+position = Vector2(-96, -160)
+
+[node name="blank_area7" parent="." instance=ExtResource("2_sx207")]
+position = Vector2(0, -51)
