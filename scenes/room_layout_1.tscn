@@ -29,3 +29,6 @@ position = Vector2(-96, -160)
 
 [node name="blank_area7" parent="." instance=ExtResource("2_sx207")]
 position = Vector2(0, -51)
+
+[node name="blank_area8" parent="." instance=ExtResource("2_sx207")]
+position = Vector2(133, 65)
