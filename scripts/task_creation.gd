@@ -29,6 +29,7 @@ func _ready() -> void:
 
 func _on_close_requested() -> void:
 	hide()
+	global.creating_task = false
 	
 func _on_edit_description() -> void:
 	if OPENROUTER_KEY.length() == 0:
@@ -39,6 +40,7 @@ func _on_edit_description() -> void:
 		ai_button.disabled = false
 	
 # --- ADD STEP ---
+
 func _on_add_new_step() -> void:
 	var step_count = steps_container.get_child_count() + 1
 	if steps_container.get_child_count() > 0:
@@ -85,6 +87,7 @@ func _on_save() -> void:
 	print("Steps:", steps)
 
 	hide()
+	global.creating_task = false
 
 # --- AI BUTTON ---
 func _on_ai_pressed() -> void:
@@ -174,3 +177,4 @@ func _on_request_completed(result_code, response_code, headers, body):
 	await get_tree().process_frame
 	scroll.scroll_vertical = scroll.get_v_scroll_bar().max_value
 	ai_button.text = "Generate Steps with AI 🪄"
+	

@@ -1,56 +1,37 @@
-[gd_scene load_steps=6 format=3 uid="uid://ccnrycgwckgtb"]
+[gd_scene load_steps=3 format=3 uid="uid://ccnrycgwckgtb"]
 
-[ext_resource type="Texture2D" uid="uid://bl88t6fptlovm" path="res://assets/furniture/Slice 16.png" id="1_4ebxx"]
-[ext_resource type="Script" uid="uid://ch4etrji5ov3w" path="res://scripts/new_task.gd" id="1_gxv0h"]
-[ext_resource type="Script" uid="uid://by2qo2mvssko" path="res://scripts/task_creation.gd" id="2_ofmyw"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gxv0h"]
-size = Vector2(95, 42)
+[ext_resource type="Script" uid="uid://d0ocbxscahe1u" path="res://scripts/task_creation.gd" id="2_ofmyw"]
 
 [sub_resource type="Theme" id="Theme_gxv0h"]
 
 [node name="Popup" type="Node2D"]
 
-[node name="Node2D" type="Node2D" parent="."]
-script = ExtResource("1_gxv0h")
-
-[node name="Area2D" type="Area2D" parent="Node2D"]
-
-[node name="Sprite2D" type="Sprite2D" parent="Node2D/Area2D"]
-position = Vector2(117, 61)
-scale = Vector2(3, 3)
-texture = ExtResource("1_4ebxx")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Area2D"]
-position = Vector2(116.5, 61)
-shape = SubResource("RectangleShape2D_gxv0h")
-
-[node name="Window" type="Window" parent="Node2D"]
+[node name="Window" type="Window" parent="."]
 oversampling_override = 1.0
 title = "New Task"
 position = Vector2i(9, 36)
 size = Vector2i(600, 475)
 script = ExtResource("2_ofmyw")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Node2D/Window"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Window"]
 offset_left = 28.0
 offset_top = 18.0
 offset_right = 573.0
 offset_bottom = 483.0
 theme_override_constants/separation = 7
 
-[node name="Label" type="Label" parent="Node2D/Window/VBoxContainer"]
+[node name="Label" type="Label" parent="Window/VBoxContainer"]
 layout_mode = 2
 text = "Task Name: "
 
-[node name="LineEdit" type="LineEdit" parent="Node2D/Window/VBoxContainer"]
+[node name="LineEdit" type="LineEdit" parent="Window/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="Node2D/Window/VBoxContainer"]
+[node name="Label2" type="Label" parent="Window/VBoxContainer"]
 layout_mode = 2
 text = "Description"
 
-[node name="TextEdit" type="TextEdit" parent="Node2D/Window/VBoxContainer"]
+[node name="TextEdit" type="TextEdit" parent="Window/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 placeholder_text = "Amazing Task!!"
@@ -61,20 +42,20 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Generate Steps with AI 🪄"
 
-[node name="Label3" type="Label" parent="Node2D/Window/VBoxContainer"]
+[node name="Label3" type="Label" parent="Window/VBoxContainer"]
 layout_mode = 2
 text = "Steps"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Node2D/Window/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Window/VBoxContainer"]
 custom_minimum_size = Vector2(100, 130)
 layout_mode = 2
 
-[node name="StepsContainer" type="VBoxContainer" parent="Node2D/Window/VBoxContainer/ScrollContainer"]
+[node name="StepsContainer" type="VBoxContainer" parent="Window/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 7
 
-[node name="LineEdit3" type="LineEdit" parent="Node2D/Window/VBoxContainer/ScrollContainer/StepsContainer"]
+[node name="LineEdit3" type="LineEdit" parent="Window/VBoxContainer/ScrollContainer/StepsContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 placeholder_text = "Step 1"
@@ -94,18 +75,18 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 8
 
-[node name="Button" type="Button" parent="Node2D/Window/VBoxContainer/HBoxContainer"]
+[node name="Button" type="Button" parent="Window/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme = SubResource("Theme_gxv0h")
 text = "Save Task"
 
-[node name="Button2" type="Button" parent="Node2D/Window/VBoxContainer/HBoxContainer"]
+[node name="Button2" type="Button" parent="Window/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Add New Step"
 
-[node name="Button3" type="Button" parent="Node2D/Window/VBoxContainer/HBoxContainer"]
+[node name="Button3" type="Button" parent="Window/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Remove Step"
