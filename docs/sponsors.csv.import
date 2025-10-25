@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://b4o3px6t44aul"
+
+[deps]
+
+files=["res://docs/sponsors.What they do.translation", "res://docs/sponsors.Prize Name.translation", "res://docs/sponsors.Prize Award.translation", "res://docs/sponsors.What we can do.translation"]
+
+source_file="res://docs/sponsors.csv"
+dest_files=["res://docs/sponsors.What they do.translation", "res://docs/sponsors.Prize Name.translation", "res://docs/sponsors.Prize Award.translation", "res://docs/sponsors.What we can do.translation"]
+
+[params]
+
+compress=true
+delimiter=0
