@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=4 uid="uid://cok3o3subdq4o"]
+
+[ext_resource type="TileSet" uid="uid://ck4pdlhc3his1" path="res://resources/floor_tileset.tres" id="1_fy6hi"]
+[ext_resource type="PackedScene" uid="uid://bvhsi72x780v8" path="res://scenes/blank_area.tscn" id="2_w354u"]
+
+[node name="RoomLayout2" type="Node2D"]
+
+[node name="Floor" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD+//3/BgAHAAgAAAD+//7/BgAHAAgAAAD+////BgAHAAgAAAD///3/BgAHAAgAAAD///7/BgAHAAgAAAD/////BgAHAAgAAAAAAP3/BgAHAAgAAAAAAP7/BgAHAAgAAAAAAP//BgAHAAgAAAABAP3/BgAHAAgAAAABAP7/BgAHAAgAAAABAP//BgAHAAgAAAD+//v/BgACAAIAAAD///v/BgACAAIAAAAAAPv/BgACAAIAAAABAPv/BgACAAIAAAD+/wAABgAHAAgAAAD//wAABgAHAAgAAAAAAAAABgAHAAgAAAABAAAABgAHAAgAAAD8//3/BgAHAAgAAAD8//7/BgAHAAgAAAD8////BgAHAAgAAAD8/wAABgAHAAgAAAD9//3/BgAHAAgAAAD9//7/BgAHAAgAAAD9////BgAHAAgAAAD9/wAABgAHAAgAAAACAP3/BgAHAAgAAAACAP7/BgAHAAgAAAACAP//BgAHAAgAAAACAAAABgAHAAgAAAADAP3/BgAHAAgAAAADAP7/BgAHAAgAAAADAP//BgAHAAgAAAADAAAABgAHAAgAAAD8/wEABgAHAAgAAAD9/wEABgAHAAgAAAD+/wEABgAHAAgAAAD//wEABgAHAAgAAAAAAAEABgAHAAgAAAABAAEABgAHAAgAAAACAAEABgAHAAgAAAADAAEABgAHAAgAAAD8//v/BgACAAIAAAD9//v/BgACAAIAAAACAPv/BgACAAIAAAADAPv/BgACAAIAAAD8//z/BgACAAMAAAD9//z/BgACAAMAAAD+//z/BgACAAMAAAD///z/BgACAAMAAAAAAPz/BgACAAMAAAABAPz/BgACAAMAAAACAPz/BgACAAMAAAADAPz/BgACAAMAAAA=")
+tile_set = ExtResource("1_fy6hi")
+
+[node name="blank_area" parent="." instance=ExtResource("2_w354u")]
+position = Vector2(148, -101)
+
+[node name="blank_area3" parent="." instance=ExtResource("2_w354u")]
+position = Vector2(146, -22)
+
+[node name="blank_area4" parent="." instance=ExtResource("2_w354u")]
+position = Vector2(147, 55)
+
+[node name="blank_area2" parent="." instance=ExtResource("2_w354u")]
+position = Vector2(-2, -26)
+
+[node name="blank_area5" parent="." instance=ExtResource("2_w354u")]
+position = Vector2(-150, 55)
+
+[node name="blank_area6" parent="." instance=ExtResource("2_w354u")]
+position = Vector2(-149, -100)

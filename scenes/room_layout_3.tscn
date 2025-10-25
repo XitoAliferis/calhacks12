@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=4 uid="uid://cuoo5i2d6y1xa"]
+
+[ext_resource type="TileSet" uid="uid://ck4pdlhc3his1" path="res://resources/floor_tileset.tres" id="1_jjihu"]
+[ext_resource type="PackedScene" uid="uid://bvhsi72x780v8" path="res://scenes/blank_area.tscn" id="2_7em4k"]
+
+[node name="RoomLayout3" type="Node2D"]
+
+[node name="Floor" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD+//z/BgACAAMAAAD+//3/BgAGAAkAAAD+//7/BgAGAAkAAAD+////BgAGAAkAAAD///z/BgACAAMAAAD///3/BgAGAAkAAAD///7/BgAGAAkAAAD/////BgAGAAkAAAAAAPz/BgACAAMAAAAAAP3/BgAGAAkAAAAAAP7/BgAGAAkAAAAAAP//BgAGAAkAAAABAPz/BgACAAMAAAABAP3/BgAGAAkAAAABAP7/BgAGAAkAAAABAP//BgAGAAkAAAD+//v/BgACAAIAAAD///v/BgACAAIAAAAAAPv/BgACAAIAAAABAPv/BgACAAIAAAD+/wAABgAGAAkAAAD//wAABgAGAAkAAAAAAAAABgAGAAkAAAABAAAABgAGAAkAAAA=")
+tile_set = ExtResource("1_jjihu")
+
+[node name="blank_area" parent="." instance=ExtResource("2_7em4k")]
+position = Vector2(45, -96)
+
+[node name="blank_area3" parent="." instance=ExtResource("2_7em4k")]
+position = Vector2(48, 0)
+
+[node name="blank_area4" parent="." instance=ExtResource("2_7em4k")]
+position = Vector2(-49, 0)
+
+[node name="blank_area2" parent="." instance=ExtResource("2_7em4k")]
+position = Vector2(-51, -97)
