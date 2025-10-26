@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://celcs7g1ei76m" path="res://assets/buttons/task marker.png" id="2_25tjb"]
 [ext_resource type="PackedScene" uid="uid://ccnrycgwckgtb" path="res://scenes/popup.tscn" id="3_imn18"]
 [ext_resource type="PackedScene" uid="uid://dto650t263as" path="res://scenes/pick_furniture.tscn" id="4_i2bmn"]
-[ext_resource type="PackedScene" path="res://scenes/todo_list.tscn" id="5_hhpop"]
+[ext_resource type="PackedScene" uid="uid://dhp3yetpyp37w" path="res://scenes/todo_list.tscn" id="5_hhpop"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_25tjb"]
 

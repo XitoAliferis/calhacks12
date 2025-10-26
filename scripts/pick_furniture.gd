@@ -12,7 +12,7 @@ func _ready() -> void:
 		furniture.scale.y  = 2
 		hbox.add_child(furniture)
 		var btn = Button.new()
-		btn.set_text("            ")
+		btn.set_text(i)
 		i += 1
 		hbox.add_child(btn)
 		btn.pressed.connect(set_furniture.bind(btn))
