@@ -11,6 +11,7 @@ oversampling_override = 1.0
 title = "New Task"
 position = Vector2i(9, 36)
 size = Vector2i(600, 475)
+visible = false
 script = ExtResource("2_ofmyw")
 
 [node name="HTTPRequest" type="HTTPRequest" parent="Window"]

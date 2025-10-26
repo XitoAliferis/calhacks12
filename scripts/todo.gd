@@ -9,6 +9,7 @@ signal successful_creation
 @onready var scroll = $VBoxContainer/ScrollContainer
 
 func _ready() -> void:
+	hide()
 	complete_task_button.disabled = true
 	connect("close_requested", Callable(self, "_on_close_requested"))
 	complete_task_button.pressed.connect(_on_complete_task)
