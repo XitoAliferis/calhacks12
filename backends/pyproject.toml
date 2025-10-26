@@ -14,7 +14,8 @@ dependencies = [
     "chromadb>=0.5.5",
     "sentence-transformers>=3.0.0",
     "python-dotenv>=1.0.1",
-    "tenacity>=9.0.0"
+    "tenacity>=9.0.0",
+    "fastmcp>=0.4.0"
 ]
 
 [project.optional-dependencies]
@@ -25,6 +26,9 @@ dev = [
     "mypy>=1.10.0",
     "alembic>=1.13.0"
 ]
+
+[project.scripts]
+task-mcp = "app.mcp_server:main"
 
 [tool.uv]
 package = false

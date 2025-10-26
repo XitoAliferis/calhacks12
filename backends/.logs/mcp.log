@@ -1,0 +1,42 @@
+
+
+╭──────────────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│                         ▄▀▀ ▄▀█ █▀▀ ▀█▀ █▀▄▀█ █▀▀ █▀█                        │
+│                         █▀  █▀█ ▄▄█  █  █ ▀ █ █▄▄ █▀▀                        │
+│                                                                              │
+│                                FastMCP 2.13.0                                │
+│                                                                              │
+│                                                                              │
+│                  🖥  Server name: ai-task-backend                             │
+│                                                                              │
+│                  📦 Transport:   HTTP                                        │
+│                  🔗 Server URL:  http://127.0.0.1:8766/mcp                   │
+│                                                                              │
+│                  📚 Docs:        https://gofastmcp.com                       │
+│                  🚀 Hosting:     https://fastmcp.cloud                       │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+
+[10/26/25 00:31:44] INFO     Starting MCP server                  server.py:2049
+                             'ai-task-backend' with transport                   
+                             'http' on http://127.0.0.1:8766/mcp                
+INFO:     Started server process [27694]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8766 (Press CTRL+C to quit)
+INFO:     127.0.0.1:57744 - "POST /mcp HTTP/1.1" 200 OK
+Error in message router
+Traceback (most recent call last):
+  File "/Users/ethanpan/Library/CloudStorage/GoogleDrive-pyy122759996@gmail.com/Other computers/My MacBook Pro/code/calhacks12/backends/.venv/lib/python3.12/site-packages/mcp/server/streamable_http.py", line 831, in message_router
+    async for session_message in write_stream_reader:
+  File "/Users/ethanpan/Library/CloudStorage/GoogleDrive-pyy122759996@gmail.com/Other computers/My MacBook Pro/code/calhacks12/backends/.venv/lib/python3.12/site-packages/anyio/abc/_streams.py", line 41, in __anext__
+    return await self.receive()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ethanpan/Library/CloudStorage/GoogleDrive-pyy122759996@gmail.com/Other computers/My MacBook Pro/code/calhacks12/backends/.venv/lib/python3.12/site-packages/anyio/streams/memory.py", line 111, in receive
+    return self.receive_nowait()
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ethanpan/Library/CloudStorage/GoogleDrive-pyy122759996@gmail.com/Other computers/My MacBook Pro/code/calhacks12/backends/.venv/lib/python3.12/site-packages/anyio/streams/memory.py", line 93, in receive_nowait
+    raise ClosedResourceError
+anyio.ClosedResourceError

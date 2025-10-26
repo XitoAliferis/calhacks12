@@ -36,20 +36,33 @@ func _connect_all_checkboxes() -> void:
 	# Recalculate based on current state
 	_on_update_subtask(true)
 
-
-
 func _on_update_subtask(_toggled: bool = false) -> void:
 	var total_steps := 0
 	var completed_steps := 0
+	var updated_steps: Array = []
 
 	for hbox in steps_container.get_children():
 		if hbox is HBoxContainer:
+			var checkbox_pressed = false
+			var text = ""
 			for child in hbox.get_children():
 				if child is CheckBox:
 					total_steps += 1
 					if child.button_pressed:
 						completed_steps += 1
+						checkbox_pressed = true
+				elif child is LineEdit:
+					text = child.text.strip_edges()
+			if text != "":
+				updated_steps.append({ "text": text, "checked": checkbox_pressed })
 
+	# Save updated state
+	if global.saved_tasks.has(global.current_furniture):
+		var data = global.saved_tasks[global.current_furniture]
+		data["steps"] = updated_steps
+		global.saved_tasks[global.current_furniture] = data
+
+	# Update button label
 	if total_steps == 0:
 		complete_task_button.text = "No Steps"
 		complete_task_button.disabled = true
@@ -74,24 +87,20 @@ func _on_complete_task() -> void:
 
 func _on_close_requested() -> void:
 	hide()
-
+	
 func load_task_from_global() -> void:
 	if not global.saved_tasks.has(global.current_furniture):
 		print("⚠️ No task found for:", global.current_furniture)
 		return
 
 	var task_data = global.saved_tasks[global.current_furniture]
-	print("🪑 Loading task:", task_data)
-
 	task_name_input.text = task_data.get("name", "")
 	description_input.text = task_data.get("description", "")
 
-	# --- Clear any existing steps first ---
 	for child in steps_container.get_children():
 		steps_container.remove_child(child)
 		child.free()
 
-	# --- Recreate steps from saved data ---
 	var steps = task_data.get("steps", [])
 	for i in range(steps.size()):
 		var hbox := HBoxContainer.new()
@@ -99,15 +108,15 @@ func load_task_from_global() -> void:
 		var step_input := LineEdit.new()
 
 		step_input.placeholder_text = "Step %d" % (i + 1)
-		step_input.text = steps[i]
-		step_input.custom_minimum_size = Vector2(545, 0)
+		step_input.text = steps[i]["text"]
+		checkbox.button_pressed = steps[i]["checked"]
 
+		step_input.custom_minimum_size = Vector2(545, 0)
+		
 		hbox.add_child(checkbox)
 		hbox.add_child(step_input)
 		steps_container.add_child(hbox)
 
-		# Always connect once
 		checkbox.connect("toggled", Callable(self, "_on_update_subtask"))
 
-	# --- Update button status properly ---
 	_on_update_subtask(true)

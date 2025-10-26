@@ -25,8 +25,8 @@ func save_task(id: String, name: String, description: String, steps: Array) -> v
 		"description": description,
 		"steps": steps
 	}
-	print(saved_tasks[id])
-	print("wowowowowo")
+
+
 	
 func get_task(id: String) -> Dictionary:
 	if saved_tasks.has(id):

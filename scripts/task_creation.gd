@@ -96,7 +96,7 @@ func _on_save() -> void:
 				if subchild is LineEdit:
 					var text = subchild.text.strip_edges()
 					if text != "":
-						steps.append(text)
+						steps.append({ "text": text, "checked": false })
 
 	print("=== New Task ===")
 	print("Task Name:", task_name)

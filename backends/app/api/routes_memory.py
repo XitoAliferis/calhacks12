@@ -1,4 +1,16 @@
-"""Vector memory endpoints."""
+#!/usr/bin/env python
+# -*-coding:utf-8 -*-
+'''
+@File    :   routes_memory.py
+@Time    :   2025/10/25 15:45:29
+@Author  :   Ethan Pan 
+@Version :   1.0
+@Contact :   epan@cs.wisc.edu
+@License :   (C)Copyright 2020-2025, Ethan Pan
+@Desc    :   routes for vector memory endpoints.
+'''
+
+
 
 from __future__ import annotations
 
