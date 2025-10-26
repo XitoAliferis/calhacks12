@@ -4,13 +4,14 @@
 
 [sub_resource type="Theme" id="Theme_gxv0h"]
 
-[node name="Popup" type="Node2D"]
+[node name="Popup2" type="Node2D"]
 
 [node name="Window" type="Window" parent="."]
 oversampling_override = 1.0
 title = "New Task"
 position = Vector2i(9, 36)
 size = Vector2i(600, 475)
+visible = false
 script = ExtResource("2_ofmyw")
 
 [node name="HTTPRequest" type="HTTPRequest" parent="Window"]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=4 uid="uid://dfegkpn7tbawy"]
+[gd_scene load_steps=7 format=4 uid="uid://dfegkpn7tbawy"]
 
 [ext_resource type="TileSet" uid="uid://ck4pdlhc3his1" path="res://resources/floor_tileset.tres" id="1_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://djfp3lhbqp05l" path="res://scenes/room_layout_1.tscn" id="1_sugp2"]
 [ext_resource type="PackedScene" uid="uid://cok3o3subdq4o" path="res://scenes/room_layout_2.tscn" id="2_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://cuoo5i2d6y1xa" path="res://scenes/room_layout_3.tscn" id="3_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://cw11v8vhxyi7x" path="res://scenes/locked_room.tscn" id="5_tbgi4"]
 
 [sub_resource type="GDScript" id="GDScript_tbgi4"]
 script/source = "extends Node
@@ -35,4 +36,9 @@ position = Vector2(672, 336)
 position = Vector2(215, 503)
 
 [node name="RoomLayout3" parent="." instance=ExtResource("3_tbgi4")]
-position = Vector2(1026, 574)
+position = Vector2(1040, 588)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="LockedRoom" parent="." instance=ExtResource("5_tbgi4")]
+position = Vector2(139, 139)

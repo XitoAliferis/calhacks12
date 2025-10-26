@@ -1,7 +1,8 @@
 extends Node
 
+signal finished_task
+var finished_tasks = 10
 var creating_task = false
-
 var furniture = [
 	"res://scenes/furniture/1.tscn",
 	"res://scenes/furniture/2.tscn",

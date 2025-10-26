@@ -29,9 +29,11 @@ func _on_task_marker_button_mouse_exited() -> void:
 
 func _on_task_marker_button_pressed() -> void:
 	# open task view gui
+	if $PickFurniture/Window.visible: return
 	$TaskMarkerButton.hide()
 	var this_furniture = load(selected_furniture)
 	add_child(this_furniture.instantiate())
+	global.finished_tasks+=1
 
 func set_furniture(index):
 	selected_furniture = global.furniture[index]
