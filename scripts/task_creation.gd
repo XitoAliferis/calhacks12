@@ -1,5 +1,7 @@
 extends Window
 
+signal successful_creation
+
 @onready var task_name_input = $VBoxContainer/LineEdit
 @onready var description_input = $VBoxContainer/TextEdit
 @onready var steps_container = $VBoxContainer/ScrollContainer/StepsContainer
@@ -88,6 +90,7 @@ func _on_save() -> void:
 
 	hide()
 	global.creating_task = false
+	successful_creation.emit()
 
 # --- AI BUTTON ---
 func _on_ai_pressed() -> void:
