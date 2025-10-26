@@ -21,7 +21,7 @@ if [[ -f "$PID_FILE" ]]; then
 fi
 
 cd "$ROOT_DIR"
-uv run python -m app.mcp_server --transport http --port 8766 \
+uv run python -m app.mcp_server --transport http --host 0.0.0.0 --port 8766 \
   > "$LOG_DIR/mcp.log" 2>&1 &
 MCP_PID=$!
 
