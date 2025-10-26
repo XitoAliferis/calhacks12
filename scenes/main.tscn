@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://dfegkpn7tbawy"]
+[gd_scene load_steps=16 format=4 uid="uid://dfegkpn7tbawy"]
 
 [ext_resource type="TileSet" uid="uid://ck4pdlhc3his1" path="res://resources/floor_tileset.tres" id="1_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://djfp3lhbqp05l" path="res://scenes/room_layout_1.tscn" id="1_sugp2"]
@@ -9,6 +9,11 @@
 [ext_resource type="Script" uid="uid://cs18moed8w0dv" path="res://scripts/camera_2d.gd" id="6_tefeu"]
 [ext_resource type="PackedScene" uid="uid://ccxa3c4tmp5ca" path="res://scenes/cat.tscn" id="8_choun"]
 [ext_resource type="PackedScene" uid="uid://b4bnid8kxtpwt" path="res://scenes/cow.tscn" id="8_tipki"]
+[ext_resource type="Texture2D" uid="uid://dkrbnyo5yx62a" path="res://assets/furniture/Slice 367.png" id="10_trceg"]
+[ext_resource type="Texture2D" uid="uid://ca0ed08fpff2a" path="res://assets/furniture/Slice 347.png" id="11_a8y0u"]
+[ext_resource type="Texture2D" uid="uid://q7tlxtp4nn2" path="res://assets/furniture/Slice 305.png" id="12_jkv2x"]
+[ext_resource type="Texture2D" uid="uid://2wdm8x8ybt0u" path="res://assets/furniture/Slice 303.png" id="13_jbj1t"]
+[ext_resource type="Texture2D" uid="uid://3672gmgi3a7g" path="res://assets/furniture/window.png" id="14_a8y0u"]
 
 [sub_resource type="GDScript" id="GDScript_tbgi4"]
 script/source = "extends Node
@@ -96,3 +101,32 @@ position = Vector2(597, 310)
 
 [node name="Cow" parent="." instance=ExtResource("8_tipki")]
 position = Vector2(-1791, 2067)
+
+[node name="Slice367" type="Sprite2D" parent="."]
+position = Vector2(304, 318)
+texture = ExtResource("10_trceg")
+
+[node name="Slice347" type="Sprite2D" parent="."]
+position = Vector2(467, 256.8)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("11_a8y0u")
+
+[node name="Slice305" type="Sprite2D" parent="."]
+position = Vector2(429.00003, 274.00003)
+scale = Vector2(2.0625, 2.0625)
+texture = ExtResource("12_jkv2x")
+
+[node name="Slice303" type="Sprite2D" parent="."]
+position = Vector2(230, 373)
+scale = Vector2(2.1874998, 2.1874998)
+texture = ExtResource("13_jbj1t")
+
+[node name="Window" type="Sprite2D" parent="."]
+position = Vector2(533, 261)
+scale = Vector2(0.22512455, 0.22512457)
+texture = ExtResource("14_a8y0u")
+
+[node name="Window2" type="Sprite2D" parent="."]
+position = Vector2(938, 384)
+scale = Vector2(0.22512455, 0.22512457)
+texture = ExtResource("14_a8y0u")
