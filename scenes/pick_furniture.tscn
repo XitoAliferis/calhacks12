@@ -9,6 +9,7 @@ oversampling_override = 1.0
 title = "Pick"
 position = Vector2i(9, 36)
 size = Vector2i(120, 475)
+visible = false
 script = ExtResource("1_l6yfp")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Window"]
