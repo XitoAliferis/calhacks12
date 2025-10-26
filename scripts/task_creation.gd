@@ -11,12 +11,12 @@ extends Window
 @onready var http_request = $HTTPRequest  # reference to the HTTPRequest node
 
 const OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
-const OPENROUTER_KEY = ""
+const OPENROUTER_KEY = "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"
 
 var is_loading := false
 
 func _ready() -> void:
-	hide()
+
 	ai_button.disabled = true
 	remove_step_button.hide()
 	connect("close_requested", Callable(self, "_on_close_requested"))
@@ -26,7 +26,13 @@ func _ready() -> void:
 	ai_button.pressed.connect(_on_ai_pressed)
 	http_request.request_completed.connect(_on_request_completed)
 	description_input.text_changed.connect(_on_edit_description)
-
+	# Hide all checkboxes initially
+	for child in steps_container.get_children():
+		if child is HBoxContainer:
+			for subchild in child.get_children():
+				if subchild is CheckBox:
+					subchild.visible = false
+	
 func _on_close_requested() -> void:
 	hide()
 	global.creating_task = false
@@ -162,10 +168,19 @@ func _on_request_completed(result_code, response_code, headers, body):
 
 	# --- Add the AI-generated steps ---
 	for i in range(steps.size()):
+		var hbox := HBoxContainer.new()
+		var checkbox := CheckBox.new()
 		var step_input := LineEdit.new()
+
+		checkbox.focus_mode = Control.FOCUS_NONE
+		checkbox.visible = true  # <-- will later be false until AI pressed
 		step_input.placeholder_text = "Step %d" % (i + 1)
+		step_input.custom_minimum_size = Vector2(545.0,0)
 		step_input.text = steps[i]
-		steps_container.add_child(step_input)
+
+		hbox.add_child(checkbox)
+		hbox.add_child(step_input)
+		steps_container.add_child(hbox)
 
 	# --- Add one new blank step at the end ---
 	var next_index := steps.size() + 1
