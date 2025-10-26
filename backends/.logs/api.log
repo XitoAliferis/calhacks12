@@ -151,3 +151,51 @@ WHERE todo_items.id = ?
 2025-10-26 00:32:54,099 INFO sqlalchemy.engine.Engine [cached since 2.709s ago] (28,)
 INFO:     127.0.0.1:57757 - "POST /ai/generate HTTP/1.1" 200 OK
 2025-10-26 00:32:54,108 INFO sqlalchemy.engine.Engine COMMIT
+WARNING:  WatchFiles detected changes in 'app/services/todo_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [27696]
+INFO:     Started server process [36202]
+INFO:     Waiting for application startup.
+2025-10-26 01:53:40,950 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-10-26 01:53:40,951 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("todo_items")
+2025-10-26 01:53:40,951 INFO sqlalchemy.engine.Engine [raw sql] ()
+2025-10-26 01:53:40,951 INFO sqlalchemy.engine.Engine COMMIT
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'app/api/routes_todos.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [36202]
+INFO:     Started server process [36239]
+INFO:     Waiting for application startup.
+2025-10-26 01:53:48,329 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-10-26 01:53:48,330 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("todo_items")
+2025-10-26 01:53:48,330 INFO sqlalchemy.engine.Engine [raw sql] ()
+2025-10-26 01:53:48,330 INFO sqlalchemy.engine.Engine COMMIT
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'tests/test_todo_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [36239]
+INFO:     Started server process [36281]
+INFO:     Waiting for application startup.
+2025-10-26 01:53:56,717 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-10-26 01:53:56,717 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("todo_items")
+2025-10-26 01:53:56,717 INFO sqlalchemy.engine.Engine [raw sql] ()
+2025-10-26 01:53:56,718 INFO sqlalchemy.engine.Engine COMMIT
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'app/mcp_server.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [36281]
+INFO:     Started server process [36735]
+INFO:     Waiting for application startup.
+2025-10-26 01:55:19,186 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-10-26 01:55:19,186 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("todo_items")
+2025-10-26 01:55:19,186 INFO sqlalchemy.engine.Engine [raw sql] ()
+2025-10-26 01:55:19,186 INFO sqlalchemy.engine.Engine COMMIT
+INFO:     Application startup complete.

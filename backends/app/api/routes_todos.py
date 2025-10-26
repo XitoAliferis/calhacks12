@@ -61,3 +61,8 @@ def update_todo(todo_id: int, payload: schemas.TodoUpdate, session: Session = De
 def delete_todo(todo_id: int, session: Session = Depends(get_session)):
     todo_service.delete_todo(todo_id, session)
     return Response(status_code=204)
+
+
+@router.post("/{todo_id}/complete", response_model=schemas.TodoRead)
+def complete_todo(todo_id: int, session: Session = Depends(get_session)):
+    return todo_service.complete_todo(todo_id, session)

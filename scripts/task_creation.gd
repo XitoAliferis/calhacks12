@@ -14,7 +14,6 @@ signal successful_creation
 
 const OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 const OPENROUTER_KEY = ""
-
 var is_loading := false
 var current_furniture_id := ""
 
@@ -141,7 +140,7 @@ func _on_ai_pressed() -> void:
 	]
 	# Construct the message prompt dynamically
 	var body = {
-		"model": "openai/gpt-oss-20b",  # ⚡ super fast model
+		"model": "anthropic/claude-3.5-haiku",  # ⚡ super fast model
 		"messages": [
 			{
 				"role": "user",
@@ -202,7 +201,7 @@ func _on_request_completed(result_code, response_code, headers, body):
 		var step_input := LineEdit.new()
 
 		checkbox.focus_mode = Control.FOCUS_NONE
-		checkbox.visible = true  # <-- will later be false until AI pressed
+		checkbox.visible = false  # <-- will later be false until AI pressed
 		step_input.placeholder_text = "Step %d" % (i + 1)
 		step_input.custom_minimum_size = Vector2(545.0,0)
 		step_input.text = steps[i]
@@ -221,4 +220,5 @@ func _on_request_completed(result_code, response_code, headers, body):
 	await get_tree().process_frame
 	scroll.scroll_vertical = scroll.get_v_scroll_bar().max_value
 	ai_button.text = "Generate Steps with AI 🪄"
+	finish_button.disabled = false
 	
