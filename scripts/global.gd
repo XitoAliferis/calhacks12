@@ -2,6 +2,7 @@ extends Node
 
 signal finished_task
 var finished_tasks = 10
+var open_furniture_slots = 18
 var creating_task = false
 var furniture = [
 	"res://scenes/furniture/1.tscn",
@@ -32,3 +33,9 @@ func get_task(id: String) -> Dictionary:
 		return saved_tasks[id]
 	return {}
 	
+var room_types = [
+	"res://scenes/room_layout_1.tscn",
+	"res://scenes/room_layout_2.tscn",
+	"res://scenes/room_layout_3.tscn"
+	
+]

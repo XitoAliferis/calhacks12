@@ -10,6 +10,7 @@ func _ready() -> void:
 
 	$Popup/Window.successful_creation.connect(setup_task)
 	$PickFurniture/Window.selected_furniture.connect(set_furniture)
+	$TodoList/Window.task_complete.connect(finish_task)
 
 	# --- check if this area already has a task/furniture ---
 	if global.saved_tasks.has(id):
@@ -42,12 +43,16 @@ func _on_task_marker_button_mouse_exited() -> void:
 
 func _on_task_marker_button_pressed() -> void:
 	# open task view gui
-	if $PickFurniture/Window.visible: 
-		return
-	$TaskMarkerButton.hide()
-	var this_furniture = load(selected_furniture)
-	add_child(this_furniture.instantiate())
-	global.finished_tasks += 1
+	if $PickFurniture/Window.visible: return
+	if $TodoList/Window.visible: $TodoList/Window.visible = false
+	else: $TodoList/Window.visible = true
 
 func set_furniture(index):
 	selected_furniture = global.furniture[index]
+
+func finish_task():
+	$TaskMarkerButton.hide()
+	var this_furniture = load(selected_furniture)
+	add_child(this_furniture.instantiate())
+	global.finished_tasks+=1
+	global.finished_task.emit()
