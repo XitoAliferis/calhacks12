@@ -1,8 +1,7 @@
 extends Node
 
 signal finished_task
-var finished_tasks = 10
-var open_furniture_slots = 18
+var finished_tasks = 0
 var creating_task = false
 var furniture = [
 	"res://scenes/furniture/1.tscn",
@@ -37,5 +36,7 @@ var room_types = [
 	"res://scenes/room_layout_1.tscn",
 	"res://scenes/room_layout_2.tscn",
 	"res://scenes/room_layout_3.tscn",
-	"res://scenes/room_layout_4.tscn"
+	"res://scenes/room_layout_4.tscn",
+	"res://scenes/room_layout_5.tscn",
+	"res://scenes/room_layout_6.tscn"
 ]

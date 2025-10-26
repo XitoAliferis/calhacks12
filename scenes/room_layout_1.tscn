@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bthuwmwc4usum" path="res://scripts/room_layout.gd" id="1_qtg35"]
 [ext_resource type="PackedScene" uid="uid://bvhsi72x780v8" path="res://scenes/blank_area.tscn" id="2_sx207"]
 
-[node name="RoomLayout1" type="Node2D"]
+[node name="RoomLayout" type="Node2D"]
 script = ExtResource("1_qtg35")
 
 [node name="Floor" type="TileMapLayer" parent="."]
