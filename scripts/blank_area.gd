@@ -34,6 +34,7 @@ func _on_task_marker_button_pressed() -> void:
 	var this_furniture = load(selected_furniture)
 	add_child(this_furniture.instantiate())
 	global.finished_tasks+=1
+	global.finished_task.emit()
 
 func set_furniture(index):
 	selected_furniture = global.furniture[index]
