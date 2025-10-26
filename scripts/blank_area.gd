@@ -6,7 +6,6 @@ var id: String = ""
 func _ready() -> void:
 	# --- create persistent id based on position ---
 	id = "furniture_%d_%d" % [int(global_position.x), int(global_position.y)]
-	print("🪑 Initialized blank area:", id)
 
 	$Popup/Window.successful_creation.connect(setup_task)
 	$PickFurniture/Window.selected_furniture.connect(set_furniture)
@@ -14,7 +13,6 @@ func _ready() -> void:
 
 	# --- check if this area already has a task/furniture ---
 	if global.saved_tasks.has(id):
-		print("🔁 Task already exists for:", id)
 		$Button.hide()
 		$TaskMarkerButton.show()
 	else:
@@ -24,7 +22,6 @@ func setup_task():
 	$Button.disabled = true
 	$Button.hide()
 	$TaskMarkerButton.show()
-	print("✅ successfully created task for:", id)
 	# open select furniture gui
 	$PickFurniture/Window.show()
 
@@ -48,7 +45,6 @@ func _on_task_marker_button_pressed() -> void:
 	global.current_furniture = id
 	if $TodoList/Window.visible: $TodoList/Window.visible = false
 	else: $TodoList/Window.visible = true
-	print("Opening todo for:", global.current_furniture)
 	$TodoList/Window.load_task_from_global()
 
 func set_furniture(index):
