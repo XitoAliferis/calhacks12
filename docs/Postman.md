@@ -86,3 +86,4 @@ These steps assume you have Postman Desktop or Postman Web set up.
 ## 6. Import Ready-Made Collection
 - Copy the entire JSON from `docs/PostmanCollection.json` and import it directly in Postman (`Import → Raw text`).
 - The collection ships with the same requests described above and defaults `base_url` to `http://127.0.0.1:8000`.
+- Working with the MCP HTTP bridge? Import `docs/PostmanMCP.json`, set `mcp_base_url` (default `http://127.0.0.1:8766`), and start the bridge with `uv run python backends/app/mcp_server.py --transport http --port 8766`. Each request sends a JSON-RPC payload to `/mcp` (FastMCP’s HTTP endpoint) with `Accept: application/json, text/event-stream` to satisfy the protocol requirements before calling `ai_generate`, `todo_tree`, or `memory_search`.

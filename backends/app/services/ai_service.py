@@ -113,6 +113,20 @@ def _raw_completion(user_input: str) -> str:
 
 
 # defining a function to generate the structured todos for the ai service.
+def _strip_code_fence(payload: str) -> str:
+    """Remove markdown fences (```json ... ```) often returned by models."""
+    cleaned = payload.strip()
+    if cleaned.startswith("```"):
+        lines = cleaned.splitlines()
+        # drop first fence line
+        lines = lines[1:]
+        # drop trailing fence if present
+        if lines and lines[-1].strip().startswith("```"):
+            lines = lines[:-1]
+        cleaned = "\n".join(lines).strip()
+    return cleaned
+
+
 def generate_structured_todos(user_input: str) -> List[schemas.GeneratedTodoNode]:
     # getting the mock response for the ai service.
     mock_response = _mock_todos()
@@ -121,7 +135,7 @@ def generate_structured_todos(user_input: str) -> List[schemas.GeneratedTodoNode
         return mock_response
     try:
         # getting the payload from the ai service.
-        payload = _raw_completion(user_input)
+        payload = _strip_code_fence(_raw_completion(user_input))
         # loading the data from the payload.
         data = json.loads(payload)
         # getting the todos from the data.

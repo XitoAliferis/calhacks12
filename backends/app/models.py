@@ -13,7 +13,7 @@
 
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Optional
 
 from sqlmodel import Field, SQLModel
@@ -38,11 +38,11 @@ class TodoItem(SQLModel, table=True):
     deadline: Optional[datetime] = Field(default=None, description="ISO timestamp supplied by AI or user")
 
     # defining the created at timestamp.
-    created_at: datetime = Field(default_factory=datetime.utcnow, nullable=False)
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc), nullable=False)
     # defining the updated at timestamp.
-    updated_at: datetime = Field(default_factory=datetime.utcnow, nullable=False)
+    updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc), nullable=False)
 
     # defining a method to touch the updated at timestamp.
     def touch(self) -> None:
         # updating the updated at timestamp.
-        self.updated_at = datetime.utcnow()
+        self.updated_at = datetime.now(timezone.utc)

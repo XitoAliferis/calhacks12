@@ -1,0 +1,153 @@
+INFO:     Will watch for changes in these directories: ['/Users/ethanpan/Library/CloudStorage/GoogleDrive-pyy122759996@gmail.com/Other computers/My MacBook Pro/code/calhacks12/backends']
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [27693] using WatchFiles
+INFO:     Started server process [27696]
+INFO:     Waiting for application startup.
+2025-10-26 00:31:44,521 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-10-26 00:31:44,522 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("todo_items")
+2025-10-26 00:31:44,523 INFO sqlalchemy.engine.Engine [raw sql] ()
+2025-10-26 00:31:44,524 INFO sqlalchemy.engine.Engine COMMIT
+INFO:     Application startup complete.
+2025-10-26 00:32:51,373 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-10-26 00:32:51,376 INFO sqlalchemy.engine.Engine INSERT INTO todo_items (parent_id, title, reason, priority, status, deadline, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+2025-10-26 00:32:51,376 INFO sqlalchemy.engine.Engine [generated in 0.00033s] (None, 'Create study schedule', 'Organize time across all subjects to ensure adequate preparation', 'high', 'pending', None, '2025-10-26 07:32:51.373231', '2025-10-26 07:32:51.373250')
+2025-10-26 00:32:51,378 INFO sqlalchemy.engine.Engine INSERT INTO todo_items (parent_id, title, reason, priority, status, deadline, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+2025-10-26 00:32:51,378 INFO sqlalchemy.engine.Engine [cached since 0.00235s ago] (6, 'List all exam dates and times', 'Know when each exam occurs', 'high', 'pending', None, '2025-10-26 07:32:51.377504', '2025-10-26 07:32:51.377519')
+2025-10-26 00:32:51,378 INFO sqlalchemy.engine.Engine INSERT INTO todo_items (parent_id, title, reason, priority, status, deadline, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+2025-10-26 00:32:51,378 INFO sqlalchemy.engine.Engine [cached since 0.002865s ago] (6, 'Allocate study hours per subject', 'Balance preparation time based on difficulty and exam weight', 'high', 'pending', None, '2025-10-26 07:32:51.378478', '2025-10-26 07:32:51.378488')
+2025-10-26 00:32:51,379 INFO sqlalchemy.engine.Engine INSERT INTO todo_items (parent_id, title, reason, priority, status, deadline, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+2025-10-26 00:32:51,379 INFO sqlalchemy.engine.Engine [cached since 0.003228s ago] (None, 'Review course materials', 'Refresh knowledge and identify weak areas', 'high', 'pending', None, '2025-10-26 07:32:51.378868', '2025-10-26 07:32:51.378876')
+2025-10-26 00:32:51,379 INFO sqlalchemy.engine.Engine INSERT INTO todo_items (parent_id, title, reason, priority, status, deadline, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+2025-10-26 00:32:51,379 INFO sqlalchemy.engine.Engine [cached since 0.003614s ago] (9, 'Go through lecture notes', 'Consolidate key concepts from each class', 'high', 'pending', None, '2025-10-26 07:32:51.379233', '2025-10-26 07:32:51.379242')
+2025-10-26 00:32:51,379 INFO sqlalchemy.engine.Engine INSERT INTO todo_items (parent_id, title, reason, priority, status, deadline, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+2025-10-26 00:32:51,379 INFO sqlalchemy.engine.Engine [cached since 0.004021s ago] (9, 'Review textbook chapters', 'Deepen understanding of complex topics', 'medium', 'pending', None, '2025-10-26 07:32:51.379625', '2025-10-26 07:32:51.379633')
+2025-10-26 00:32:51,380 INFO sqlalchemy.engine.Engine INSERT INTO todo_items (parent_id, title, reason, priority, status, deadline, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+2025-10-26 00:32:51,380 INFO sqlalchemy.engine.Engine [cached since 0.00434s ago] (9, 'Compile study guides', 'Create condensed reference materials', 'medium', 'pending', None, '2025-10-26 07:32:51.380017', '2025-10-26 07:32:51.380025')
+2025-10-26 00:32:51,380 INFO sqlalchemy.engine.Engine INSERT INTO todo_items (parent_id, title, reason, priority, status, deadline, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+2025-10-26 00:32:51,380 INFO sqlalchemy.engine.Engine [cached since 0.00462s ago] (None, 'Practice with past exams', 'Familiarize with exam format and improve time management', 'high', 'pending', None, '2025-10-26 07:32:51.380306', '2025-10-26 07:32:51.380314')
+2025-10-26 00:32:51,380 INFO sqlalchemy.engine.Engine INSERT INTO todo_items (parent_id, title, reason, priority, status, deadline, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+2025-10-26 00:32:51,380 INFO sqlalchemy.engine.Engine [cached since 0.00494s ago] (13, 'Find old exam papers', 'Locate available practice materials', 'high', 'pending', None, '2025-10-26 07:32:51.380613', '2025-10-26 07:32:51.380621')
+2025-10-26 00:32:51,381 INFO sqlalchemy.engine.Engine INSERT INTO todo_items (parent_id, title, reason, priority, status, deadline, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+2025-10-26 00:32:51,381 INFO sqlalchemy.engine.Engine [cached since 0.005221s ago] (13, 'Complete practice tests under timed conditions', 'Simulate real exam experience', 'high', 'pending', None, '2025-10-26 07:32:51.380902', '2025-10-26 07:32:51.380909')
+2025-10-26 00:32:51,381 INFO sqlalchemy.engine.Engine INSERT INTO todo_items (parent_id, title, reason, priority, status, deadline, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+2025-10-26 00:32:51,381 INFO sqlalchemy.engine.Engine [cached since 0.005559s ago] (13, 'Review mistakes and weak areas', 'Target problem areas for focused study', 'high', 'pending', None, '2025-10-26 07:32:51.381209', '2025-10-26 07:32:51.381217')
+2025-10-26 00:32:51,381 INFO sqlalchemy.engine.Engine INSERT INTO todo_items (parent_id, title, reason, priority, status, deadline, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+2025-10-26 00:32:51,381 INFO sqlalchemy.engine.Engine [cached since 0.005907s ago] (None, 'Form or join study groups', 'Collaborate with peers to clarify concepts and stay motivated', 'medium', 'pending', None, '2025-10-26 07:32:51.381558', '2025-10-26 07:32:51.381565')
+2025-10-26 00:32:51,381 INFO sqlalchemy.engine.Engine INSERT INTO todo_items (parent_id, title, reason, priority, status, deadline, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+2025-10-26 00:32:51,382 INFO sqlalchemy.engine.Engine [cached since 0.006197s ago] (17, 'Reach out to classmates', 'Organize study sessions', 'medium', 'pending', None, '2025-10-26 07:32:51.381882', '2025-10-26 07:32:51.381889')
+2025-10-26 00:32:51,382 INFO sqlalchemy.engine.Engine INSERT INTO todo_items (parent_id, title, reason, priority, status, deadline, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+2025-10-26 00:32:51,382 INFO sqlalchemy.engine.Engine [cached since 0.006529s ago] (17, 'Schedule regular group study sessions', 'Maintain consistent collaborative learning', 'medium', 'pending', None, '2025-10-26 07:32:51.382189', '2025-10-26 07:32:51.382197')
+2025-10-26 00:32:51,382 INFO sqlalchemy.engine.Engine INSERT INTO todo_items (parent_id, title, reason, priority, status, deadline, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+2025-10-26 00:32:51,382 INFO sqlalchemy.engine.Engine [cached since 0.00683s ago] (None, 'Prepare physically and mentally', 'Ensure peak performance during exams', 'medium', 'pending', None, '2025-10-26 07:32:51.382506', '2025-10-26 07:32:51.382514')
+2025-10-26 00:32:51,382 INFO sqlalchemy.engine.Engine INSERT INTO todo_items (parent_id, title, reason, priority, status, deadline, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+2025-10-26 00:32:51,382 INFO sqlalchemy.engine.Engine [cached since 0.007156s ago] (20, 'Maintain regular sleep schedule', 'Support cognitive function and memory retention', 'high', 'pending', None, '2025-10-26 07:32:51.382810', '2025-10-26 07:32:51.382818')
+2025-10-26 00:32:51,383 INFO sqlalchemy.engine.Engine INSERT INTO todo_items (parent_id, title, reason, priority, status, deadline, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+2025-10-26 00:32:51,383 INFO sqlalchemy.engine.Engine [cached since 0.007469s ago] (20, 'Exercise regularly', 'Reduce stress and improve focus', 'medium', 'pending', None, '2025-10-26 07:32:51.383136', '2025-10-26 07:32:51.383143')
+2025-10-26 00:32:51,383 INFO sqlalchemy.engine.Engine INSERT INTO todo_items (parent_id, title, reason, priority, status, deadline, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+2025-10-26 00:32:51,383 INFO sqlalchemy.engine.Engine [cached since 0.007796s ago] (20, 'Eat healthy meals', 'Maintain energy and concentration', 'medium', 'pending', None, '2025-10-26 07:32:51.383463', '2025-10-26 07:32:51.383471')
+2025-10-26 00:32:51,383 INFO sqlalchemy.engine.Engine INSERT INTO todo_items (parent_id, title, reason, priority, status, deadline, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+2025-10-26 00:32:51,384 INFO sqlalchemy.engine.Engine [cached since 0.008193s ago] (20, 'Practice relaxation techniques', 'Manage exam anxiety', 'medium', 'pending', None, '2025-10-26 07:32:51.383780', '2025-10-26 07:32:51.383788')
+2025-10-26 00:32:51,384 INFO sqlalchemy.engine.Engine INSERT INTO todo_items (parent_id, title, reason, priority, status, deadline, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+2025-10-26 00:32:51,384 INFO sqlalchemy.engine.Engine [cached since 0.008701s ago] (None, 'Prepare exam day logistics', 'Avoid last-minute stress and ensure smooth exam experience', 'medium', 'pending', None, '2025-10-26 07:32:51.384278', '2025-10-26 07:32:51.384289')
+2025-10-26 00:32:51,384 INFO sqlalchemy.engine.Engine INSERT INTO todo_items (parent_id, title, reason, priority, status, deadline, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+2025-10-26 00:32:51,384 INFO sqlalchemy.engine.Engine [cached since 0.009099s ago] (25, 'Gather required materials (ID, calculator, etc.)', 'Have everything needed for each exam', 'high', 'pending', None, '2025-10-26 07:32:51.384735', '2025-10-26 07:32:51.384743')
+2025-10-26 00:32:51,385 INFO sqlalchemy.engine.Engine INSERT INTO todo_items (parent_id, title, reason, priority, status, deadline, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+2025-10-26 00:32:51,385 INFO sqlalchemy.engine.Engine [cached since 0.009464s ago] (25, 'Plan travel route and timing', 'Arrive early and avoid rushing', 'medium', 'pending', None, '2025-10-26 07:32:51.385107', '2025-10-26 07:32:51.385116')
+2025-10-26 00:32:51,385 INFO sqlalchemy.engine.Engine INSERT INTO todo_items (parent_id, title, reason, priority, status, deadline, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+2025-10-26 00:32:51,385 INFO sqlalchemy.engine.Engine [cached since 0.009828s ago] (25, 'Review exam location and room number', 'Know exactly where to go', 'medium', 'pending', None, '2025-10-26 07:32:51.385473', '2025-10-26 07:32:51.385481')
+2025-10-26 00:32:51,385 INFO sqlalchemy.engine.Engine COMMIT
+2025-10-26 00:32:51,388 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2025-10-26 00:32:51,390 INFO sqlalchemy.engine.Engine SELECT todo_items.id, todo_items.parent_id, todo_items.title, todo_items.reason, todo_items.priority, todo_items.status, todo_items.deadline, todo_items.created_at, todo_items.updated_at 
+FROM todo_items 
+WHERE todo_items.id = ?
+2025-10-26 00:32:51,390 INFO sqlalchemy.engine.Engine [generated in 0.00017s] (6,)
+2025-10-26 00:32:53,541 INFO sqlalchemy.engine.Engine SELECT todo_items.id, todo_items.parent_id, todo_items.title, todo_items.reason, todo_items.priority, todo_items.status, todo_items.deadline, todo_items.created_at, todo_items.updated_at 
+FROM todo_items 
+WHERE todo_items.id = ?
+2025-10-26 00:32:53,541 INFO sqlalchemy.engine.Engine [cached since 2.152s ago] (7,)
+2025-10-26 00:32:53,568 INFO sqlalchemy.engine.Engine SELECT todo_items.id, todo_items.parent_id, todo_items.title, todo_items.reason, todo_items.priority, todo_items.status, todo_items.deadline, todo_items.created_at, todo_items.updated_at 
+FROM todo_items 
+WHERE todo_items.id = ?
+2025-10-26 00:32:53,568 INFO sqlalchemy.engine.Engine [cached since 2.178s ago] (8,)
+2025-10-26 00:32:53,599 INFO sqlalchemy.engine.Engine SELECT todo_items.id, todo_items.parent_id, todo_items.title, todo_items.reason, todo_items.priority, todo_items.status, todo_items.deadline, todo_items.created_at, todo_items.updated_at 
+FROM todo_items 
+WHERE todo_items.id = ?
+2025-10-26 00:32:53,600 INFO sqlalchemy.engine.Engine [cached since 2.21s ago] (9,)
+2025-10-26 00:32:53,627 INFO sqlalchemy.engine.Engine SELECT todo_items.id, todo_items.parent_id, todo_items.title, todo_items.reason, todo_items.priority, todo_items.status, todo_items.deadline, todo_items.created_at, todo_items.updated_at 
+FROM todo_items 
+WHERE todo_items.id = ?
+2025-10-26 00:32:53,627 INFO sqlalchemy.engine.Engine [cached since 2.237s ago] (10,)
+2025-10-26 00:32:53,635 INFO sqlalchemy.engine.Engine SELECT todo_items.id, todo_items.parent_id, todo_items.title, todo_items.reason, todo_items.priority, todo_items.status, todo_items.deadline, todo_items.created_at, todo_items.updated_at 
+FROM todo_items 
+WHERE todo_items.id = ?
+2025-10-26 00:32:53,635 INFO sqlalchemy.engine.Engine [cached since 2.246s ago] (11,)
+2025-10-26 00:32:53,660 INFO sqlalchemy.engine.Engine SELECT todo_items.id, todo_items.parent_id, todo_items.title, todo_items.reason, todo_items.priority, todo_items.status, todo_items.deadline, todo_items.created_at, todo_items.updated_at 
+FROM todo_items 
+WHERE todo_items.id = ?
+2025-10-26 00:32:53,660 INFO sqlalchemy.engine.Engine [cached since 2.271s ago] (12,)
+2025-10-26 00:32:53,699 INFO sqlalchemy.engine.Engine SELECT todo_items.id, todo_items.parent_id, todo_items.title, todo_items.reason, todo_items.priority, todo_items.status, todo_items.deadline, todo_items.created_at, todo_items.updated_at 
+FROM todo_items 
+WHERE todo_items.id = ?
+2025-10-26 00:32:53,699 INFO sqlalchemy.engine.Engine [cached since 2.309s ago] (13,)
+2025-10-26 00:32:53,732 INFO sqlalchemy.engine.Engine SELECT todo_items.id, todo_items.parent_id, todo_items.title, todo_items.reason, todo_items.priority, todo_items.status, todo_items.deadline, todo_items.created_at, todo_items.updated_at 
+FROM todo_items 
+WHERE todo_items.id = ?
+2025-10-26 00:32:53,732 INFO sqlalchemy.engine.Engine [cached since 2.342s ago] (14,)
+2025-10-26 00:32:53,742 INFO sqlalchemy.engine.Engine SELECT todo_items.id, todo_items.parent_id, todo_items.title, todo_items.reason, todo_items.priority, todo_items.status, todo_items.deadline, todo_items.created_at, todo_items.updated_at 
+FROM todo_items 
+WHERE todo_items.id = ?
+2025-10-26 00:32:53,742 INFO sqlalchemy.engine.Engine [cached since 2.353s ago] (15,)
+2025-10-26 00:32:53,755 INFO sqlalchemy.engine.Engine SELECT todo_items.id, todo_items.parent_id, todo_items.title, todo_items.reason, todo_items.priority, todo_items.status, todo_items.deadline, todo_items.created_at, todo_items.updated_at 
+FROM todo_items 
+WHERE todo_items.id = ?
+2025-10-26 00:32:53,755 INFO sqlalchemy.engine.Engine [cached since 2.365s ago] (16,)
+2025-10-26 00:32:53,766 INFO sqlalchemy.engine.Engine SELECT todo_items.id, todo_items.parent_id, todo_items.title, todo_items.reason, todo_items.priority, todo_items.status, todo_items.deadline, todo_items.created_at, todo_items.updated_at 
+FROM todo_items 
+WHERE todo_items.id = ?
+2025-10-26 00:32:53,766 INFO sqlalchemy.engine.Engine [cached since 2.376s ago] (17,)
+2025-10-26 00:32:53,797 INFO sqlalchemy.engine.Engine SELECT todo_items.id, todo_items.parent_id, todo_items.title, todo_items.reason, todo_items.priority, todo_items.status, todo_items.deadline, todo_items.created_at, todo_items.updated_at 
+FROM todo_items 
+WHERE todo_items.id = ?
+2025-10-26 00:32:53,797 INFO sqlalchemy.engine.Engine [cached since 2.407s ago] (18,)
+2025-10-26 00:32:53,833 INFO sqlalchemy.engine.Engine SELECT todo_items.id, todo_items.parent_id, todo_items.title, todo_items.reason, todo_items.priority, todo_items.status, todo_items.deadline, todo_items.created_at, todo_items.updated_at 
+FROM todo_items 
+WHERE todo_items.id = ?
+2025-10-26 00:32:53,834 INFO sqlalchemy.engine.Engine [cached since 2.444s ago] (19,)
+2025-10-26 00:32:53,843 INFO sqlalchemy.engine.Engine SELECT todo_items.id, todo_items.parent_id, todo_items.title, todo_items.reason, todo_items.priority, todo_items.status, todo_items.deadline, todo_items.created_at, todo_items.updated_at 
+FROM todo_items 
+WHERE todo_items.id = ?
+2025-10-26 00:32:53,843 INFO sqlalchemy.engine.Engine [cached since 2.453s ago] (20,)
+2025-10-26 00:32:53,852 INFO sqlalchemy.engine.Engine SELECT todo_items.id, todo_items.parent_id, todo_items.title, todo_items.reason, todo_items.priority, todo_items.status, todo_items.deadline, todo_items.created_at, todo_items.updated_at 
+FROM todo_items 
+WHERE todo_items.id = ?
+2025-10-26 00:32:53,852 INFO sqlalchemy.engine.Engine [cached since 2.462s ago] (21,)
+2025-10-26 00:32:53,860 INFO sqlalchemy.engine.Engine SELECT todo_items.id, todo_items.parent_id, todo_items.title, todo_items.reason, todo_items.priority, todo_items.status, todo_items.deadline, todo_items.created_at, todo_items.updated_at 
+FROM todo_items 
+WHERE todo_items.id = ?
+2025-10-26 00:32:53,860 INFO sqlalchemy.engine.Engine [cached since 2.47s ago] (22,)
+2025-10-26 00:32:53,869 INFO sqlalchemy.engine.Engine SELECT todo_items.id, todo_items.parent_id, todo_items.title, todo_items.reason, todo_items.priority, todo_items.status, todo_items.deadline, todo_items.created_at, todo_items.updated_at 
+FROM todo_items 
+WHERE todo_items.id = ?
+2025-10-26 00:32:53,869 INFO sqlalchemy.engine.Engine [cached since 2.479s ago] (23,)
+2025-10-26 00:32:53,877 INFO sqlalchemy.engine.Engine SELECT todo_items.id, todo_items.parent_id, todo_items.title, todo_items.reason, todo_items.priority, todo_items.status, todo_items.deadline, todo_items.created_at, todo_items.updated_at 
+FROM todo_items 
+WHERE todo_items.id = ?
+2025-10-26 00:32:53,877 INFO sqlalchemy.engine.Engine [cached since 2.487s ago] (24,)
+2025-10-26 00:32:53,908 INFO sqlalchemy.engine.Engine SELECT todo_items.id, todo_items.parent_id, todo_items.title, todo_items.reason, todo_items.priority, todo_items.status, todo_items.deadline, todo_items.created_at, todo_items.updated_at 
+FROM todo_items 
+WHERE todo_items.id = ?
+2025-10-26 00:32:53,908 INFO sqlalchemy.engine.Engine [cached since 2.518s ago] (25,)
+2025-10-26 00:32:53,917 INFO sqlalchemy.engine.Engine SELECT todo_items.id, todo_items.parent_id, todo_items.title, todo_items.reason, todo_items.priority, todo_items.status, todo_items.deadline, todo_items.created_at, todo_items.updated_at 
+FROM todo_items 
+WHERE todo_items.id = ?
+2025-10-26 00:32:53,917 INFO sqlalchemy.engine.Engine [cached since 2.528s ago] (26,)
+2025-10-26 00:32:54,090 INFO sqlalchemy.engine.Engine SELECT todo_items.id, todo_items.parent_id, todo_items.title, todo_items.reason, todo_items.priority, todo_items.status, todo_items.deadline, todo_items.created_at, todo_items.updated_at 
+FROM todo_items 
+WHERE todo_items.id = ?
+2025-10-26 00:32:54,090 INFO sqlalchemy.engine.Engine [cached since 2.7s ago] (27,)
+2025-10-26 00:32:54,099 INFO sqlalchemy.engine.Engine SELECT todo_items.id, todo_items.parent_id, todo_items.title, todo_items.reason, todo_items.priority, todo_items.status, todo_items.deadline, todo_items.created_at, todo_items.updated_at 
+FROM todo_items 
+WHERE todo_items.id = ?
+2025-10-26 00:32:54,099 INFO sqlalchemy.engine.Engine [cached since 2.709s ago] (28,)
+INFO:     127.0.0.1:57757 - "POST /ai/generate HTTP/1.1" 200 OK
+2025-10-26 00:32:54,108 INFO sqlalchemy.engine.Engine COMMIT

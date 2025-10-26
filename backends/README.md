@@ -1,102 +1,90 @@
 # AI Task Backend
 
-FastAPI backend that turns free-form player intents into hierarchical to-do trees using Claude via OpenRouter, persists tasks in SQLite via SQLModel, and stores embeddings in ChromaDB for semantic recall.
+Backend services that turn free-form intents into hierarchical quests, persist them with SQLModel/SQLite + ChromaDB, and expose both REST + MCP interfaces for Godot, Creao, and agent flows.
 
-## Quickstart
+---
 
-```bash
-# 0. From repo root, drop into the backend workspace
-cd backends
-
-# 1. Ensure uv is installed (https://docs.astral.sh/uv/)
-uv sync  # installs deps declared in pyproject
-
-# 2. Provide secrets
-cp .env.template .env && $EDITOR .env
-# (don't execute `.env`; FastAPI reads it automatically. If you need the vars in your shell, run `set -a; source .env; set +a`.)
-
-# 3. Run the API
-uv run uvicorn app.main:app --reload
-```
-
-Docs are available at http://127.0.0.1:8000/docs when the server is running.
-
-## Project Layout
-
-```
-app/
-  api/            # REST routes grouped by concern
-  services/       # LLM, todo, chroma helpers
-  config.py       # Settings loader (.env)
-  database.py     # SQLModel engine + session helpers
-  main.py         # FastAPI bootstrapper + rate limiting/health
-data/             # Demo prompts + seed todos
-mocks/            # Static responses for frontend testing
-scripts/          # CLI helpers (seeding, evaluation, mock server)
-tests/            # Pytest suite
-```
-
-## Helpful Commands
-- Seed demo data: `uv run python scripts/load_demo_data.py data/demo_tasks.json --reset`
-- Evaluate prompts: `uv run python scripts/eval_prompt.py data/sample_prompts.json`
-- Serve mock backend (no DB/LLM): `uv run python scripts/run_mock_server.py`
-- Run tests: `uv run pytest`
-- Lint: `uv run ruff check`
-- Generate migrations: `uv run alembic revision --autogenerate -m "message"`
-- Apply migrations: `uv run alembic upgrade head`
-
-## Docker
-Build and run the backend in a containerized environment:
-
-```bash
-docker build -f backends/Dockerfile -t ai-backend ./backends
-docker run --env-file backends/.env -p 8000:8000 ai-backend
-```
-
-## Integration Notes
-- Godot should call `/ai/generate` to turn prompts into tasks (set `save=false` for dry-run previews).
-- `/todos/tree` returns a nested structure suitable for recursive UI rendering.
-- `/memory/search` exposes ChromaDB semantic matches for contextual quest suggestions.
-- When testing without OpenRouter access, set `MOCK_AI_RESPONSES_FILE` (defaults to `./mocks/ai_generate_sample.json`) or run the mock server script.
-
-See `backends/suggested-path.md` for the full architecture rationale.
-
-
-## Repo Layout
-- `scenes/`, `scripts/`, `assets/` – Godot project files (see `project.godot`).
-- `backends/` – FastAPI service (`app/`, `pyproject.toml`, `.env.template`).
-- `docs/` – Additional documentation (`API.md`, `Postman.md`, sponsor info).
-
-## Backend Setup & Run
-1. **Install prerequisites**
+## 1. Setup & Installation
+1. **Prereqs**
    - Python 3.10+
-   - [uv](https://docs.astral.sh/uv/) (fast package manager)
-2. **Install dependencies**
+   - [uv](https://docs.astral.sh/uv/) package manager
+2. **Install deps**
    ```bash
    cd backends
-   uv sync
+   uv sync  # installs runtime + dev extras
    ```
-3. **Configure environment**
+3. **Configure env**
    ```bash
    cp .env.template .env
-   $EDITOR .env  # set OPENROUTER_API_KEY, etc.
+   $EDITOR .env  # fill OPENROUTER_API_KEY, DB path, rate limits, etc.
    ```
-4. **Launch the API**
-   ```bash
-   uv run uvicorn app.main:app --reload
-   ```
-5. **Validate**: open http://127.0.0.1:8000/docs or hit `/health`.
+   > FastAPI loads `.env` automatically; only `set -a; source .env; set +a` if you need the vars in your shell.
 
-## Frontend (Godot) Integration
-- Use `HTTPRequest` nodes to call backend endpoints documented in `docs/API.md`.
-- For local testing, keep the FastAPI server running and point HTTP requests to `http://127.0.0.1:8000`.
+Directory highlights:
+```
+app/        # FastAPI + MCP code
+scripts/    # CLI helpers (seed/eval/mock/stack)
+data/       # Demo payloads
+mocks/      # Static responses for frontend-only testing
+tests/      # pytest suite
+```
 
-## Testing APIs
-- Follow `docs/Postman.md` for a ready-to-run Postman collection setup.
-- Automated tests (pytest/mocks) are planned; see `backends/TODO.md`.
+---
 
-## Contributing
-1. Create a feature branch.
-2. Make changes (respecting existing Godot and backend structures).
-3. Run backend/unit tests (when available) and manual API checks.
-4. Submit a PR referencing relevant TODO items.
+## 2. FastAPI Service (REST)
+- Launch: `uv run uvicorn app.main:app --reload` (docs at http://127.0.0.1:8000/docs).
+- Seed demo data: `uv run python scripts/load_demo_data.py data/demo_tasks.json --reset`.
+- Mock AI without OpenRouter: set `MOCK_AI_RESPONSES_FILE` or run `uv run python scripts/run_mock_server.py`.
+- Reference contracts + Postman flows live in `docs/API.md`, `docs/Postman.md`, and `docs/PostmanCollection.json`.
+
+Core endpoints: `/ai/generate`, `/todos`, `/todos/tree`, `/memory/search`, `/health`, `/ready`.
+
+---
+
+## 3. MCP Bridge (Agents)
+- Stdio (agent runtimes): `uv run python -m app.mcp_server --transport stdio`.
+- HTTP (curl/Postman): `uv run python -m app.mcp_server --transport http --host 127.0.0.1 --port 8766` then send JSON-RPC POSTs to `http://127.0.0.1:8766/mcp` with:
+  - `Content-Type: application/json`
+  - `Accept: application/json, text/event-stream`
+
+Docs & tool catalog: `docs/MCPGuide.md` (also exposed as `mcp://docs/mcp-guide`). `docs/PostmanMCP.json` imports directly into Postman.
+
+Available tools mirror the REST surface (`health`, `ai_generate`, `create_todo`, `list_todos`, `update_todo`, `delete_todo`, `todo_tree`, `memory_search`). Resources also expose `docs/API.md` for agent reference.
+
+Try it interactively with the MCP Inspector:
+```bash
+npx @modelcontextprotocol/inspector uv run python -m app.mcp_server --transport stdio
+```
+
+---
+
+## 4. One-Command Stack Scripts
+Located under `scripts/`:
+- `start_stack.sh` – runs FastAPI (`uv run uvicorn ...`) + MCP HTTP (`uv run python -m app.mcp_server --transport http --port 8766`) simultaneously, logs to `.logs/`, stores PIDs in `.stack_pids`.
+- `stop_stack.sh` – reads `.stack_pids`, stops both processes cleanly.
+
+Use these from the `backends/` directory:
+```bash
+cd backends
+scripts/start_stack.sh
+# ...
+scripts/stop_stack.sh
+```
+
+---
+
+## 5. Testing & Tooling
+- Unit tests: `uv run pytest` (see `tests/` for service coverage).
+- Lint: `uv run ruff check`.
+- Type checking: `uv run mypy app`.
+- Alembic migrations: `uv run alembic revision --autogenerate -m "msg"` / `uv run alembic upgrade head`.
+- Postman: import `docs/PostmanCollection.json` (REST) or `docs/PostmanMCP.json` (MCP) per `docs/Postman.md`.
+
+---
+
+## 6. Integration Notes
+- Godot clients hit the REST interface (`docs/GodotIntegration.md`).
+- Agents / Creao connect through MCP via stdio or HTTP.
+- For offline demos, rely on mock data + `MOCK_AI_RESPONSES_FILE`.
+
+Further architecture details live in `backends/suggested-path.md` and `docs/MCPGuide.md`.

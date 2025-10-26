@@ -1,0 +1,88 @@
+{
+  "info": {
+    "name": "AI Task MCP Bridge",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "JSON-RPC requests for the FastMCP HTTP transport (start with `uv run python backends/app/mcp_server.py --transport http --port 8766`)."
+  },
+  "item": [
+    {
+      "name": "List MCP Tools",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Content-Type", "value": "application/json"},
+          {"key": "Accept", "value": "application/json, text/event-stream"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"tools/list\",\n  \"params\": {}\n}"
+        },
+        "url": {
+          "raw": "{{mcp_base_url}}/mcp",
+          "host": ["{{mcp_base_url}}"],
+          "path": ["mcp"]
+        }
+      }
+    },
+    {
+      "name": "Call Tool: ai_generate",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Content-Type", "value": "application/json"},
+          {"key": "Accept", "value": "application/json, text/event-stream"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 2,\n  \"method\": \"tools/call\",\n  \"params\": {\n    \"name\": \"ai_generate\",\n    \"arguments\": {\n      \"user_input\": \"Plan my finals week\",\n      \"save\": false\n    }\n  }\n}"
+        },
+        "url": {
+          "raw": "{{mcp_base_url}}/mcp",
+          "host": ["{{mcp_base_url}}"],
+          "path": ["mcp"]
+        }
+      }
+    },
+    {
+      "name": "Call Tool: todo_tree",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Content-Type", "value": "application/json"},
+          {"key": "Accept", "value": "application/json, text/event-stream"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 3,\n  \"method\": \"tools/call\",\n  \"params\": {\n    \"name\": \"todo_tree\",\n    \"arguments\": {}\n  }\n}"
+        },
+        "url": {
+          "raw": "{{mcp_base_url}}/mcp",
+          "host": ["{{mcp_base_url}}"],
+          "path": ["mcp"]
+        }
+      }
+    },
+    {
+      "name": "Call Tool: memory_search",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Content-Type", "value": "application/json"},
+          {"key": "Accept", "value": "application/json, text/event-stream"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 4,\n  \"method\": \"tools/call\",\n  \"params\": {\n    \"name\": \"memory_search\",\n    \"arguments\": {\n      \"query\": \"study\",\n      \"limit\": 3\n    }\n  }\n}"
+        },
+        "url": {
+          "raw": "{{mcp_base_url}}/mcp",
+          "host": ["{{mcp_base_url}}"],
+          "path": ["mcp"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {"key": "mcp_base_url", "value": "http://127.0.0.1:8766"}
+  ]
+}
