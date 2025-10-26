@@ -50,6 +50,20 @@ These steps assume you have Postman Desktop or Postman Web set up.
 }
 ```
 
+### Update Todo
+- Method: `PUT`
+- URL: `{{base_url}}/todos/{id}`
+- Body contains only the fields you want to change (e.g. `{ "status": "in-progress" }`).
+
+### Delete Todo
+- Method: `DELETE`
+- URL: `{{base_url}}/todos/{id}`
+
+### Complete Todo
+- Method: `POST`
+- URL: `{{base_url}}/todos/{id}/complete`
+- No body required; sets the status to `done`.
+
 ### Get Todo Tree
 - Method: `GET`
 - URL: `{{base_url}}/todos/tree`

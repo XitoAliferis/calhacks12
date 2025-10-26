@@ -80,6 +80,25 @@
           "path": ["mcp"]
         }
       }
+    },
+    {
+      "name": "Call Tool: complete_todo",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Content-Type", "value": "application/json"},
+          {"key": "Accept", "value": "application/json, text/event-stream"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 5,\n  \"method\": \"tools/call\",\n  \"params\": {\n    \"name\": \"complete_todo\",\n    \"arguments\": {\n      \"todo_id\": 1\n    }\n  }\n}"
+        },
+        "url": {
+          "raw": "{{mcp_base_url}}/mcp",
+          "host": ["{{mcp_base_url}}"],
+          "path": ["mcp"]
+        }
+      }
     }
   ],
   "variable": [
