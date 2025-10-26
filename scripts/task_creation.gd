@@ -13,8 +13,7 @@ signal successful_creation
 @onready var http_request = $HTTPRequest  # reference to the HTTPRequest node
 
 const OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
-const OPENROUTER_KEY = "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"
-
+const OPENROUTER_KEY = "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"
 var is_loading := false
 var current_furniture_id := ""
 
