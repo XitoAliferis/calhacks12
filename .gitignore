@@ -29,8 +29,14 @@ backends/.env
 backends/todos.db
 backends/chroma_data/
 backends/data/eval_results.json
+backends/.logs/
 .pytest_cache/
 __pycache__/
 *.sqlite
 *.db
 .DS_Store
+
+# MCP config files (exclude templates)
+*config.json
+!*config.template.json
+!*config.example.json

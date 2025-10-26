@@ -1,0 +1,28 @@
+{
+  "preferences": {
+    "menuBarEnabled": false
+  },
+  "mcpServers": {
+    "ai-task-backend": {
+      "command": "uv",
+      "args": [
+        "run",
+        "python",
+        "-m",
+        "app.mcp_server",
+        "--transport",
+        "stdio"
+      ],
+      "cwd": "/path/to/your/calhacks12/backends",
+      "env": {
+        "OPENROUTER_API_KEY": "your-api-key-here",
+        "OPENROUTER_BASE_URL": "https://openrouter.ai/api/v1",
+        "DEFAULT_MODEL": "anthropic/claude-haiku-4.5",
+        "DB_URL": "sqlite:///./todos.db",
+        "CHROMA_DIR": "./chroma_data",
+        "EMBEDDING_MODEL": "all-MiniLM-L6-v2",
+        "DEBUG": "true"
+      }
+    }
+  }
+}

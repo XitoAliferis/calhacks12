@@ -1,0 +1,192 @@
+{
+  "version": "1.0.0",
+  "auth": {
+    "type": "none"
+  },
+  "server": {
+    "url": "http://127.0.0.1:8766",
+    "transport": "https"
+  },
+  "tools": [
+    {
+      "name": "health",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    },
+    {
+      "name": "ai_generate",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "user_input": {
+            "type": "string",
+            "description": "Natural language description of tasks to generate"
+          },
+          "save": {
+            "type": "boolean",
+            "description": "Whether to persist generated todos to the database",
+            "default": false
+          }
+        },
+        "required": ["user_input"]
+      }
+    },
+    {
+      "name": "create_todo",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "todo": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 255,
+                "description": "Todo item title"
+              },
+              "reason": {
+                "type": "string",
+                "maxLength": 1000,
+                "description": "Reason or context for this todo"
+              },
+              "priority": {
+                "type": "string",
+                "enum": ["low", "medium", "high"],
+                "default": "medium",
+                "description": "Priority level"
+              },
+              "status": {
+                "type": "string",
+                "enum": ["pending", "in-progress", "done"],
+                "default": "pending",
+                "description": "Current status"
+              },
+              "deadline": {
+                "type": "string",
+                "format": "date-time",
+                "description": "Optional deadline"
+              },
+              "parent_id": {
+                "type": "integer",
+                "description": "ID of parent todo for hierarchical organization"
+              }
+            },
+            "required": ["title"]
+          }
+        },
+        "required": ["todo"]
+      }
+    },
+    {
+      "name": "list_todos",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": ["pending", "in-progress", "done"],
+            "description": "Filter by status"
+          },
+          "priority": {
+            "type": "string",
+            "enum": ["low", "medium", "high"],
+            "description": "Filter by priority"
+          },
+          "due_before": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Filter todos due before this date"
+          },
+          "due_after": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Filter todos due after this date"
+          }
+        },
+        "required": []
+      }
+    },
+    {
+      "name": "update_todo",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "todo_id": {
+            "type": "integer",
+            "description": "ID of the todo to update"
+          },
+          "fields": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 255
+              },
+              "reason": {
+                "type": "string",
+                "maxLength": 1000
+              },
+              "priority": {
+                "type": "string",
+                "enum": ["low", "medium", "high"]
+              },
+              "status": {
+                "type": "string",
+                "enum": ["pending", "in-progress", "done"]
+              },
+              "deadline": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          }
+        },
+        "required": ["todo_id", "fields"]
+      }
+    },
+    {
+      "name": "delete_todo",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "todo_id": {
+            "type": "integer",
+            "description": "ID of the todo to delete"
+          }
+        },
+        "required": ["todo_id"]
+      }
+    },
+    {
+      "name": "todo_tree",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    },
+    {
+      "name": "memory_search",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Search query for semantic matching"
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Maximum number of results to return",
+            "default": 5
+          }
+        },
+        "required": ["query"]
+      }
+    }
+  ]
+}
