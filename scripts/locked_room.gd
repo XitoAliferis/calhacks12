@@ -2,6 +2,7 @@ extends Node2D
 
 @export var required_tasks = 10
 @export var room_type = 0
+@export var back = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,6 +19,7 @@ func _on_button_pressed() -> void:
 	var room = load(global.room_types[room_type]).instantiate()
 	room.global_position = global_position
 	get_parent().add_child(room)
+	if back: get_parent().move_child(room, 2)
 	queue_free()
 
 

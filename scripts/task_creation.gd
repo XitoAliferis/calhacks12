@@ -13,7 +13,7 @@ signal successful_creation
 @onready var http_request = $HTTPRequest  # reference to the HTTPRequest node
 
 const OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
-const OPENROUTER_KEY = "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"
+const OPENROUTER_KEY = ""
 
 var is_loading := false
 var current_furniture_id := ""
@@ -21,6 +21,7 @@ var current_furniture_id := ""
 func _ready() -> void:
 	hide()
 	ai_button.disabled = true
+	finish_button.disabled = true
 	remove_step_button.hide()
 	connect("close_requested", Callable(self, "_on_close_requested"))
 	finish_button.pressed.connect(_on_save)
@@ -33,7 +34,9 @@ func _ready() -> void:
 	for child in steps_container.get_children():
 		if child is HBoxContainer:
 			for subchild in child.get_children():
-				if subchild is CheckBox:
+				if subchild is LineEdit:
+					subchild.text_changed.connect(_on_edit_steps)
+				elif subchild is CheckBox:
 					subchild.visible = false
 	
 func _on_close_requested() -> void:
@@ -47,6 +50,25 @@ func _on_edit_description() -> void:
 		ai_button.disabled = true
 	else:
 		ai_button.disabled = false
+		
+func _on_edit_steps(new_text := "") -> void:
+	var has_text := false
+
+	for child in steps_container.get_children():
+		if child is LineEdit:
+			if child.text.strip_edges() != "":
+				has_text = true
+				break
+		elif child is HBoxContainer:
+			for subchild in child.get_children():
+				if subchild is LineEdit and subchild.text.strip_edges() != "":
+					has_text = true
+					break
+			if has_text:
+				break
+
+	finish_button.disabled = not has_text
+
 	
 # --- ADD STEP ---
 
@@ -96,12 +118,7 @@ func _on_save() -> void:
 				if subchild is LineEdit:
 					var text = subchild.text.strip_edges()
 					if text != "":
-						steps.append(text)
-
-	print("=== New Task ===")
-	print("Task Name:", task_name)
-	print("Description:", description)
-	print("Steps:", steps)
+						steps.append({ "text": text, "checked": false })
 
 	hide()
 	current_furniture_id = global.current_furniture
@@ -114,9 +131,7 @@ func _on_save() -> void:
 func _on_ai_pressed() -> void:
 	var description_text = description_input.text.strip_edges()
 	if description_text.length() == 0:
-		print("Error")
 		return
-	print("AI request started...")
 	ai_button.text = "Generating steps..."
 	var headers = [
 		"Content-Type: application/json",
@@ -161,7 +176,6 @@ func _on_request_completed(result_code, response_code, headers, body):
 	if cut_index != -1:
 		message = message.substr(cut_index + "</think>".length()).strip_edges()
 
-	print("AI Response:", message)
 
 	# --- Parse each "step X: ..." line ---
 	var step_lines = message.split("\n", false)
