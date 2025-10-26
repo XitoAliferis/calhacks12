@@ -18,7 +18,7 @@ const OPENROUTER_KEY = "sk-or-v1-b0c28de52128f7b89424587e3a24b1bb0da81a2bc9efb19
 var is_loading := false
 
 func _ready() -> void:
-
+	hide()
 	ai_button.disabled = true
 	remove_step_button.hide()
 	connect("close_requested", Callable(self, "_on_close_requested"))
