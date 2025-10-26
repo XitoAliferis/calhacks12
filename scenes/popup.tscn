@@ -51,23 +51,45 @@ text = "Steps"
 [node name="ScrollContainer" type="ScrollContainer" parent="Window/VBoxContainer"]
 custom_minimum_size = Vector2(100, 130)
 layout_mode = 2
+horizontal_scroll_mode = 0
 
 [node name="StepsContainer" type="VBoxContainer" parent="Window/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 7
 
-[node name="LineEdit3" type="LineEdit" parent="Window/VBoxContainer/ScrollContainer/StepsContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Window/VBoxContainer/ScrollContainer/StepsContainer"]
+layout_mode = 2
+
+[node name="CheckBox" type="CheckBox" parent="Window/VBoxContainer/ScrollContainer/StepsContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="Window/VBoxContainer/ScrollContainer/StepsContainer/HBoxContainer"]
+custom_minimum_size = Vector2(545, 0)
 layout_mode = 2
 size_flags_vertical = 0
 placeholder_text = "Step 1"
 
-[node name="LineEdit4" type="LineEdit" parent="Window/VBoxContainer/ScrollContainer/StepsContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Window/VBoxContainer/ScrollContainer/StepsContainer"]
+layout_mode = 2
+
+[node name="CheckBox" type="CheckBox" parent="Window/VBoxContainer/ScrollContainer/StepsContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="Window/VBoxContainer/ScrollContainer/StepsContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(545, 0)
 layout_mode = 2
 size_flags_vertical = 0
 placeholder_text = "Step 2"
 
-[node name="LineEdit5" type="LineEdit" parent="Window/VBoxContainer/ScrollContainer/StepsContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="Window/VBoxContainer/ScrollContainer/StepsContainer"]
+layout_mode = 2
+
+[node name="CheckBox" type="CheckBox" parent="Window/VBoxContainer/ScrollContainer/StepsContainer/HBoxContainer3"]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="Window/VBoxContainer/ScrollContainer/StepsContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(545, 0)
 layout_mode = 2
 size_flags_vertical = 0
 placeholder_text = "Step 3"
