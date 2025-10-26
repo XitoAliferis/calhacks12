@@ -14,3 +14,23 @@ export_credentials.cfg
 .mono/
 data_*/
 mono_crash.*.json
+
+# IDE related
+.code
+.cursor
+claude.md
+Claude.md
+warp.md
+WARP.md
+
+# Backend/runtime artifacts
+.env
+backends/.env
+backends/todos.db
+backends/chroma_data/
+backends/data/eval_results.json
+.pytest_cache/
+__pycache__/
+*.sqlite
+*.db
+.DS_Store

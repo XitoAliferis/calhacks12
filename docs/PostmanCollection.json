@@ -1,0 +1,150 @@
+{
+  "info": {
+    "name": "AI Task Backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Ready-to-use collection for the CalHacks AI Task Backend"
+  },
+  "item": [
+    {
+      "name": "Health",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/health",
+          "host": ["{{base_url}}"],
+          "path": ["health"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Ready",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/ready",
+          "host": ["{{base_url}}"],
+          "path": ["ready"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "AI Generate",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"user_input\": \"Plan my finals week\",\n  \"save\": true\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/ai/generate",
+          "host": ["{{base_url}}"],
+          "path": ["ai", "generate"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Todo",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Record pitch\",\n  \"priority\": \"high\",\n  \"status\": \"pending\",\n  \"parent_id\": null\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/todos",
+          "host": ["{{base_url}}"],
+          "path": ["todos"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "List Todos",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/todos",
+          "host": ["{{base_url}}"],
+          "path": ["todos"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Filter Todos",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/todos?status=pending&priority=high",
+          "host": ["{{base_url}}"],
+          "path": ["todos"],
+          "query": [
+            {"key": "status", "value": "pending"},
+            {"key": "priority", "value": "high"}
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Todo Tree",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/todos/tree",
+          "host": ["{{base_url}}"],
+          "path": ["todos", "tree"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Memory Search",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"query\": \"study\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/memory/search",
+          "host": ["{{base_url}}"],
+          "path": ["memory", "search"]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": []
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": []
+      }
+    }
+  ],
+  "variable": [
+    {"key": "base_url", "value": "http://127.0.0.1:8000"}
+  ]
+}

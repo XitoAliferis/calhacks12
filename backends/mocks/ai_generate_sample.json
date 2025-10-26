@@ -1,0 +1,21 @@
+{
+  "todos": [
+    {
+      "title": "Prototype quest system",
+      "reason": "Need MVP for showcase",
+      "priority": "high",
+      "status": "pending",
+      "deadline": null,
+      "subitems": [
+        {
+          "title": "Map core quest types",
+          "reason": "Balance variety",
+          "priority": "medium",
+          "status": "pending",
+          "deadline": null,
+          "subitems": []
+        }
+      ]
+    }
+  ]
+}
