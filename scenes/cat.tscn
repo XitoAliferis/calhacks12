@@ -4,6 +4,21 @@
 [ext_resource type="Script" uid="uid://bcjf08u4ebffg" path="res://scripts/cat.gd" id="1_t8pth"]
 [ext_resource type="Texture2D" uid="uid://b5bx7ltfqanc0" path="res://assets/chatbox.png" id="2_t8pth"]
 
+[sub_resource type="Animation" id="Animation_cxap7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(1, 18)]
+}
+
 [sub_resource type="Animation" id="Animation_7vi38"]
 resource_name = "cat"
 length = 3.0
@@ -20,21 +35,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [Vector2i(1, 18), Vector2i(2, 18), Vector2i(3, 18), Vector2i(4, 18), Vector2i(5, 18), Vector2i(6, 18), Vector2i(7, 18)]
-}
-
-[sub_resource type="Animation" id="Animation_cxap7"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Vector2i(1, 18)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tol8a"]
@@ -68,5 +68,18 @@ texture = ExtResource("2_t8pth")
 [node name="RichTextLabel" type="RichTextLabel" parent="Textbox"]
 offset_left = -29.047623
 offset_top = -13.514563
-offset_right = 35.952393
-offset_bottom = 5.825243
+offset_right = 410.63495
+offset_bottom = 118.524284
+scale = Vector2(0.15, 0.15)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 25
+theme_override_font_sizes/bold_font_size = 25
+theme_override_font_sizes/bold_italics_font_size = 50
+theme_override_font_sizes/italics_font_size = 50
+theme_override_font_sizes/mono_font_size = 50
+text = "testing testing 124"
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]

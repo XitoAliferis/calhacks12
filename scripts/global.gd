@@ -1,6 +1,7 @@
 extends Node
 
 signal finished_task
+signal saved_tasks_changed
 var finished_tasks = 10
 var open_furniture_slots = 18
 var creating_task = false
@@ -23,8 +24,10 @@ func save_task(id: String, name: String, description: String, steps: Array) -> v
 	saved_tasks[id] = {
 		"name": name,
 		"description": description,
-		"steps": steps
+		"steps": steps,
+		"edited_at": Time.get_unix_time_from_system(),
 	}
+	global.emit_signal("saved_tasks_changed")
 
 
 	
