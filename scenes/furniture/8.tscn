@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ccmhsuphc5hmn"]
 
-[ext_resource type="Texture2D" uid="uid://clg7dljncaekd" path="res://assets/furniture/Slice 205.png" id="1_k608s"]
+[ext_resource type="Texture2D" uid="uid://dh7wxr4sowxnn" path="res://assets/furniture/Slice 313.png" id="1_k608s"]
 
 [node name="Furniture" type="Node2D"]
 

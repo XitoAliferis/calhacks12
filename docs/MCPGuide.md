@@ -27,6 +27,7 @@ uv run python -m app.mcp_server --transport http --host 127.0.0.1 --port 8766
 | `list_todos` | Filtered list | `status`, `priority`, `due_before`, `due_after` |
 | `update_todo` | Update by id | `todo_id`, `fields: TodoUpdate schema` |
 | `delete_todo` | Delete by id | `todo_id` |
+| `complete_todo` | Mark as `done` | `todo_id` |
 | `todo_tree` | Hierarchical todos | — |
 | `memory_search` | Chroma recall | `query: str`, `limit: int = 5` |
 

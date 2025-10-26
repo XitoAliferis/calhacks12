@@ -10,7 +10,7 @@
 oversampling_override = 1.0
 title = "ToDo"
 position = Vector2i(9, 36)
-size = Vector2i(600, 475)
+size = Vector2i(645, 475)
 visible = false
 script = ExtResource("1_l622n")
 

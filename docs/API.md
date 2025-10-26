@@ -85,6 +85,11 @@ Authentication: none (trusted local network). Add an auth layer before productio
 - **DELETE** `/todos/{id}`
 - **Response** `204 No Content`
 
+### Complete Todo
+- **POST** `/todos/{id}/complete`
+- Marks the task’s `status` as `done` and returns the updated record.
+- **Response** `200 OK`
+
 ## Todo Tree
 - **GET** `/todos/tree`
 - Returns nested nodes keyed by `children` for building quest trees in Godot.

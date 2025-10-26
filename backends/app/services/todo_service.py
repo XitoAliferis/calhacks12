@@ -97,6 +97,12 @@ def delete_todo(todo_id: int, session: Session) -> None:
     chroma_service.delete_todo(todo_id)
 
 
+def complete_todo(todo_id: int, session: Session) -> models.TodoItem:
+    """Mark the given todo as done."""
+    payload = schemas.TodoUpdate(status="done")
+    return update_todo(todo_id, payload, session)
+
+
 # defining a function to list todos for the todo service.
 def list_todos(
     session: Session,

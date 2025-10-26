@@ -69,6 +69,49 @@
       "response": []
     },
     {
+      "name": "Update Todo",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"status\": \"in-progress\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/todos/1",
+          "host": ["{{base_url}}"],
+          "path": ["todos", "1"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Complete Todo",
+      "request": {
+        "method": "POST",
+        "url": {
+          "raw": "{{base_url}}/todos/1/complete",
+          "host": ["{{base_url}}"],
+          "path": ["todos", "1", "complete"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Todo",
+      "request": {
+        "method": "DELETE",
+        "url": {
+          "raw": "{{base_url}}/todos/1",
+          "host": ["{{base_url}}"],
+          "path": ["todos", "1"]
+        }
+      },
+      "response": []
+    },
+    {
       "name": "List Todos",
       "request": {
         "method": "GET",

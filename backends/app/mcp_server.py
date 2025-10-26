@@ -104,6 +104,12 @@ def delete_todo(todo_id: int) -> dict[str, Any]:
     return {"status": "deleted", "id": todo_id}
 
 
+def complete_todo(todo_id: int) -> dict[str, Any]:
+    with session_scope() as session:
+        record = todo_service.complete_todo(todo_id, session)
+        return _todo_to_dict(record)
+
+
 def todo_tree() -> list[dict[str, Any]]:
     with session_scope() as session:
         tree = todo_service.get_tree(session)
@@ -121,6 +127,7 @@ mcp.tool(description="Create a single todo node")(create_todo)
 mcp.tool(description="List todos with optional filters")(list_todos)
 mcp.tool(description="Update a todo by id")(update_todo)
 mcp.tool(description="Delete a todo by id")(delete_todo)
+mcp.tool(description="Mark a todo as complete")(complete_todo)
 mcp.tool(description="Return the nested todo tree")(todo_tree)
 mcp.tool(description="Semantic task search backed by ChromaDB embeddings")(memory_search)
 

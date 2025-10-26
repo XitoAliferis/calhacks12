@@ -64,3 +64,12 @@ def test_tree_reconstruction(session):
     assert len(tree) == 1
     assert tree[0].children
     assert tree[0].children[0].title == "Child"
+
+
+def test_complete_todo(session):
+    todo = todo_service.create_todo(
+        schemas.TodoCreate(title="Complete me", status="pending"),
+        session,
+    )
+    updated = todo_service.complete_todo(todo.id, session)
+    assert updated.status == "done"
