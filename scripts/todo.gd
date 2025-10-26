@@ -1,6 +1,6 @@
 extends Window
 
-signal successful_creation
+signal task_complete
 
 @onready var task_name_input = $VBoxContainer/LineEdit
 @onready var description_input = $VBoxContainer/TextEdit
@@ -73,11 +73,9 @@ func _on_update_subtask(_toggled: bool = false) -> void:
 # --- Handle completion ---
 func _on_complete_task() -> void:
 	print("✅ Task completed:", task_name_input.text)
-	emit_signal("successful_creation")
+	task_complete.emit()
 	hide()
-	global.creating_task = false
 
 
 func _on_close_requested() -> void:
 	hide()
-	global.creating_task = false
