@@ -54,13 +54,18 @@ func _on_update_subtask(_toggled: bool = false) -> void:
 				elif child is LineEdit:
 					text = child.text.strip_edges()
 			if text != "":
-				updated_steps.append({ "text": text, "checked": checkbox_pressed })
+				updated_steps.append({
+					"text": text,
+					"checked": checkbox_pressed
+				})
 
-	# Save updated state
+	# ✅ Save updated state and update edit timestamp
 	if global.saved_tasks.has(global.current_furniture):
 		var data = global.saved_tasks[global.current_furniture]
 		data["steps"] = updated_steps
+		data["edited_at"] = Time.get_unix_time_from_system()  # ⏰ update edited timestamp
 		global.saved_tasks[global.current_furniture] = data
+		global.emit_signal("saved_tasks_changed")
 
 	# Update button label
 	if total_steps == 0:

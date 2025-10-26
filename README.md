@@ -1,4 +1,6 @@
-# CalHacks12 Task Game
+# Roominate - Gamified Task Tracker
+
+enter same stuff from devpost here (like the elevator pitch)
 
 This repo houses the Godot game plus Python services that:
 - expose the quest-planning REST API (`uv run uvicorn app.main:app --reload`)

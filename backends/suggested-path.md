@@ -88,14 +88,14 @@ Loads all variables using pydantic-settings.
 
 from pydantic_settings import BaseSettings
 class Settings(BaseSettings):
-    OPENROUTER_API_KEY: str
-    OPENROUTER_BASE_URL: str
-    DEFAULT_MODEL: str
-    DB_URL: str
-    CHROMA_DIR: str
-    EMBEDDING_MODEL: str
-    DEBUG: bool = True
-    class Config: env_file = ".env"
+	OPENROUTER_API_KEY: str
+	OPENROUTER_BASE_URL: str
+	DEFAULT_MODEL: str
+	DB_URL: str
+	CHROMA_DIR: str
+	EMBEDDING_MODEL: str
+	DEBUG: bool = True
+	class Config: env_file = ".env"
 settings = Settings()
 
 
@@ -110,8 +110,8 @@ from app.config import settings
 
 engine = create_engine(settings.DB_URL, echo=settings.DEBUG)
 def init_db():
-    from app.models import TodoItem
-    SQLModel.metadata.create_all(engine)
+	from app.models import TodoItem
+	SQLModel.metadata.create_all(engine)
 
 
 ⸻
@@ -125,13 +125,13 @@ from typing import Optional
 from datetime import datetime
 
 class TodoItem(SQLModel, table=True):
-    id: Optional[int] = Field(default=None, primary_key=True)
-    title: str = "Untitled Task"
-    reason: Optional[str] = None
-    priority: str = "medium"     # high | medium | low
-    status: str = "pending"      # pending | in-progress | done
-    deadline: Optional[datetime] = None
-    parent_id: Optional[int] = Field(default=None, foreign_key="todoitem.id")
+	id: Optional[int] = Field(default=None, primary_key=True)
+	title: str = "Untitled Task"
+	reason: Optional[str] = None
+	priority: str = "medium"     # high | medium | low
+	status: str = "pending"      # pending | in-progress | done
+	deadline: Optional[datetime] = None
+	parent_id: Optional[int] = Field(default=None, foreign_key="todoitem.id")
 
 
 ⸻
@@ -145,16 +145,16 @@ from typing import Optional, List
 from datetime import datetime
 
 class TodoCreate(BaseModel):
-    title: str
-    reason: Optional[str] = None
-    priority: str = "medium"
-    status: str = "pending"
-    deadline: Optional[datetime] = None
-    parent_id: Optional[int] = None
+	title: str
+	reason: Optional[str] = None
+	priority: str = "medium"
+	status: str = "pending"
+	deadline: Optional[datetime] = None
+	parent_id: Optional[int] = None
 
 class TodoRead(TodoCreate):
-    id: int
-    subitems: List["TodoRead"] = []
+	id: int
+	subitems: List["TodoRead"] = []
 
 
 ⸻
@@ -168,25 +168,25 @@ from app.config import settings
 import json
 
 client = OpenAI(
-    api_key=settings.OPENROUTER_API_KEY,
-    base_url=settings.OPENROUTER_BASE_URL,
+	api_key=settings.OPENROUTER_API_KEY,
+	base_url=settings.OPENROUTER_BASE_URL,
 )
 
 def generate_todos(prompt: str):
-    """Ask Claude via OpenRouter to return structured JSON tasks."""
-    system = (
+	"""Ask Claude via OpenRouter to return structured JSON tasks."""
+	system = (
         "You are a productivity planner. Return valid JSON:\n"
         '{"summary":"","todos":[{"title":"","reason":"","priority":"","status":"","deadline":null,"subitems":[]}]}'
-    )
-    completion = client.chat.completions.create(
-        model=settings.DEFAULT_MODEL,
-        messages=[
-            {"role": "system", "content": system},
-            {"role": "user", "content": prompt},
-        ],
-        response_format={"type": "json_object"},
-    )
-    return json.loads(completion.choices[0].message.content)
+	)
+	completion = client.chat.completions.create(
+		model=settings.DEFAULT_MODEL,
+		messages=[
+			{"role": "system", "content": system},
+			{"role": "user", "content": prompt},
+		],
+		response_format={"type": "json_object"},
+	)
+	return json.loads(completion.choices[0].message.content)
 
 
 ⸻
@@ -205,13 +205,13 @@ collection = client.get_or_create_collection("todos")
 embedder = SentenceTransformer(settings.EMBEDDING_MODEL)
 
 def add_task(todo_id: int, title: str, reason: str | None):
-    doc = f"{title}. {reason or ''}"
-    vec = embedder.encode([doc])[0].tolist()
-    collection.add(ids=[str(todo_id)], documents=[doc], embeddings=[vec])
+	doc = f"{title}. {reason or ''}"
+	vec = embedder.encode([doc])[0].tolist()
+	collection.add(ids=[str(todo_id)], documents=[doc], embeddings=[vec])
 
 def search_memory(query: str, n_results=5):
-    qv = embedder.encode([query])[0].tolist()
-    return collection.query(query_embeddings=[qv], n_results=n_results)
+	qv = embedder.encode([query])[0].tolist()
+	return collection.query(query_embeddings=[qv], n_results=n_results)
 
 
 ⸻
@@ -226,24 +226,24 @@ from app.database import engine
 from app.services import chroma_service
 
 def create(todo: TodoItem):
-    with Session(engine) as s:
-        s.add(todo); s.commit(); s.refresh(todo)
-        chroma_service.add_task(todo.id, todo.title, todo.reason)
-        return todo
+	with Session(engine) as s:
+		s.add(todo); s.commit(); s.refresh(todo)
+		chroma_service.add_task(todo.id, todo.title, todo.reason)
+		return todo
 
 def read_tree():
-    with Session(engine) as s:
-        rows = s.exec(select(TodoItem)).all()
-    tree = {}
-    for r in rows:
-        tree.setdefault(r.parent_id, []).append(r)
-    def build(node):
-        return {
-            "id": node.id, "title": node.title, "status": node.status,
-            "priority": node.priority, "deadline": node.deadline,
-            "subitems": [build(c) for c in tree.get(node.id, [])],
-        }
-    return [build(r) for r in tree.get(None, [])]
+	with Session(engine) as s:
+		rows = s.exec(select(TodoItem)).all()
+	tree = {}
+	for r in rows:
+		tree.setdefault(r.parent_id, []).append(r)
+	def build(node):
+		return {
+			"id": node.id, "title": node.title, "status": node.status,
+			"priority": node.priority, "deadline": node.deadline,
+			"subitems": [build(c) for c in tree.get(node.id, [])],
+		}
+	return [build(r) for r in tree.get(None, [])]
 
 
 ⸻
@@ -278,10 +278,10 @@ router = APIRouter(prefix="/ai", tags=["AI"])
 
 @router.post("/generate")
 def generate(req: dict):
-    """
-    Body: { "user_input": "...", "model": "optional", "save": true }
-    """
-    return generate_todos(req.get("user_input", ""))
+	"""
+	Body: { "user_input": "...", "model": "optional", "save": true }
+	"""
+	return generate_todos(req.get("user_input", ""))
 
 
 ⸻
@@ -297,7 +297,7 @@ router = APIRouter(prefix="/memory", tags=["Memory"])
 
 @router.post("/search")
 def search(req: dict):
-    return chroma_service.search_memory(req.get("query", ""))
+	return chroma_service.search_memory(req.get("query", ""))
 
 
 ⸻
@@ -343,28 +343,28 @@ Example: Fetch task tree
 @onready var http = $HTTPRequest
 
 func _ready():
-    http.request_completed.connect(_on_done)
-    http.request("http://127.0.0.1:8000/todos/tree")
+	http.request_completed.connect(_on_done)
+	http.request("http://127.0.0.1:8000/todos/tree")
 
 func _on_done(result, code, headers, body):
-    if code != 200: return
-    var data = JSON.parse_string(body.get_string_from_utf8())
-    var todos = data["todos"]
-    # Render tasks recursively
+	if code != 200: return
+	var data = JSON.parse_string(body.get_string_from_utf8())
+	var todos = data["todos"]
+	# Render tasks recursively
 
 Example: Generate tasks with Claude
 
 func ai_generate(prompt: String):
-    var headers = ["Content-Type: application/json"]
-    var body = {"user_input": prompt, "save": true}
-    http.request("http://127.0.0.1:8000/ai/generate", headers, HTTPClient.METHOD_POST, JSON.stringify(body))
+	var headers = ["Content-Type: application/json"]
+	var body = {"user_input": prompt, "save": true}
+	http.request("http://127.0.0.1:8000/ai/generate", headers, HTTPClient.METHOD_POST, JSON.stringify(body))
 
 Example: Mark task as done
 
 func mark_done(id: int):
-    var headers = ["Content-Type: application/json"]
-    var body = {"status": "done"}
-    http.request("http://127.0.0.1:8000/todos/%d" % id, headers, HTTPClient.METHOD_PUT, JSON.stringify(body))
+	var headers = ["Content-Type: application/json"]
+	var body = {"status": "done"}
+	http.request("http://127.0.0.1:8000/todos/%d" % id, headers, HTTPClient.METHOD_PUT, JSON.stringify(body))
 
 
 ⸻

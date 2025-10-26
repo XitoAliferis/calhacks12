@@ -1,8 +1,8 @@
 extends Node
 
 signal finished_task
-var finished_tasks = 10
-var open_furniture_slots = 18
+signal saved_tasks_changed
+var finished_tasks = 0
 var creating_task = false
 var furniture = [
 	"res://scenes/furniture/1.tscn",
@@ -23,8 +23,10 @@ func save_task(id: String, name: String, description: String, steps: Array) -> v
 	saved_tasks[id] = {
 		"name": name,
 		"description": description,
-		"steps": steps
+		"steps": steps,
+		"edited_at": Time.get_unix_time_from_system(),
 	}
+	global.emit_signal("saved_tasks_changed")
 
 
 	
@@ -37,5 +39,7 @@ var room_types = [
 	"res://scenes/room_layout_1.tscn",
 	"res://scenes/room_layout_2.tscn",
 	"res://scenes/room_layout_3.tscn",
-	"res://scenes/room_layout_4.tscn"
+	"res://scenes/room_layout_4.tscn",
+	"res://scenes/room_layout_5.tscn",
+	"res://scenes/room_layout_6.tscn"
 ]

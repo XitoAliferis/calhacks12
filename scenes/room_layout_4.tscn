@@ -3,7 +3,7 @@
 [ext_resource type="TileSet" uid="uid://ck4pdlhc3his1" path="res://resources/floor_tileset.tres" id="1_63xxr"]
 [ext_resource type="PackedScene" uid="uid://bvhsi72x780v8" path="res://scenes/blank_area.tscn" id="2_w8l7w"]
 
-[node name="RoomLayout2" type="Node2D"]
+[node name="RoomLayout" type="Node2D"]
 
 [node name="Floor" type="TileMapLayer" parent="."]
 position = Vector2(2, 0)

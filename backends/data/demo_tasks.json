@@ -1,46 +1,46 @@
 {
   "todos": [
-    {
-      "title": "Ship CalHacks demo",
-      "reason": "Deliver playable build",
-      "priority": "high",
-      "status": "in-progress",
-      "deadline": "2024-10-19T18:00:00",
-      "subitems": [
-        {
-          "title": "Polish tutorial quest",
-          "priority": "medium",
-          "status": "pending",
-          "reason": "First-time players",
-          "deadline": null,
-          "subitems": []
-        },
-        {
-          "title": "Record gameplay trailer",
-          "priority": "medium",
-          "status": "pending",
-          "reason": "Submission requirement",
-          "deadline": "2024-10-18T12:00:00",
-          "subitems": []
-        }
-      ]
-    },
-    {
-      "title": "Team logistics",
-      "reason": "Keep communication clear",
-      "priority": "medium",
-      "status": "pending",
-      "deadline": null,
-      "subitems": [
-        {
-          "title": "Schedule daily standup",
-          "priority": "low",
-          "status": "pending",
-          "reason": null,
-          "deadline": null,
-          "subitems": []
-        }
-      ]
-    }
+	{
+	  "title": "Ship CalHacks demo",
+	  "reason": "Deliver playable build",
+	  "priority": "high",
+	  "status": "in-progress",
+	  "deadline": "2024-10-19T18:00:00",
+	  "subitems": [
+		{
+		  "title": "Polish tutorial quest",
+		  "priority": "medium",
+		  "status": "pending",
+		  "reason": "First-time players",
+		  "deadline": null,
+		  "subitems": []
+		},
+		{
+		  "title": "Record gameplay trailer",
+		  "priority": "medium",
+		  "status": "pending",
+		  "reason": "Submission requirement",
+		  "deadline": "2024-10-18T12:00:00",
+		  "subitems": []
+		}
+	  ]
+	},
+	{
+	  "title": "Team logistics",
+	  "reason": "Keep communication clear",
+	  "priority": "medium",
+	  "status": "pending",
+	  "deadline": null,
+	  "subitems": [
+		{
+		  "title": "Schedule daily standup",
+		  "priority": "low",
+		  "status": "pending",
+		  "reason": null,
+		  "deadline": null,
+		  "subitems": []
+		}
+	  ]
+	}
   ]
 }

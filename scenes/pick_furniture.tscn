@@ -14,10 +14,10 @@ script = ExtResource("1_l6yfp")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Window"]
 custom_minimum_size = Vector2(220, 220)
-offset_left = 58.0
-offset_top = 46.0
-offset_right = 359.0
-offset_bottom = 515.0
+offset_left = 41.68
+offset_top = 38.29
+offset_right = 342.68
+offset_bottom = 507.2899
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 10
