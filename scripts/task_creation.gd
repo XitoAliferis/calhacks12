@@ -78,17 +78,25 @@ func _on_remove_step() -> void:
 	await get_tree().process_frame
 	scroll.scroll_vertical = scroll.get_v_scroll_bar().max_value
 
-# --- SAVE BUTTON ---
 func _on_save() -> void:
 	var task_name = task_name_input.text.strip_edges()
 	var description = description_input.text.strip_edges()
-	var steps = []
+	var steps: Array = []
 
-	for step_input in steps_container.get_children():
-		if step_input is LineEdit:
-			var text = step_input.text.strip_edges()
+	for child in steps_container.get_children():
+		# Case 1: Direct LineEdit
+		if child is LineEdit:
+			var text = child.text.strip_edges()
 			if text != "":
 				steps.append(text)
+
+		# Case 2: HBoxContainer (with LineEdit inside)
+		elif child is HBoxContainer:
+			for subchild in child.get_children():
+				if subchild is LineEdit:
+					var text = subchild.text.strip_edges()
+					if text != "":
+						steps.append(text)
 
 	print("=== New Task ===")
 	print("Task Name:", task_name)
@@ -100,6 +108,7 @@ func _on_save() -> void:
 	global.save_task(current_furniture_id, task_name, description, steps)
 	global.creating_task = false
 	successful_creation.emit()
+
 
 # --- AI BUTTON ---
 func _on_ai_pressed() -> void:

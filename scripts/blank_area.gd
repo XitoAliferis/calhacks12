@@ -44,8 +44,11 @@ func _on_task_marker_button_mouse_exited() -> void:
 func _on_task_marker_button_pressed() -> void:
 	# open task view gui
 	if $PickFurniture/Window.visible: return
+	global.current_furniture = id
 	if $TodoList/Window.visible: $TodoList/Window.visible = false
 	else: $TodoList/Window.visible = true
+	print("Opening todo for:", global.current_furniture)
+	$TodoList/Window.load_task_from_global()
 
 func set_furniture(index):
 	selected_furniture = global.furniture[index]

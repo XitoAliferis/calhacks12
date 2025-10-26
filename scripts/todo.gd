@@ -14,13 +14,6 @@ func _ready() -> void:
 	connect("close_requested", Callable(self, "_on_close_requested"))
 	complete_task_button.pressed.connect(_on_complete_task)
 
-	# Connect all existing checkboxes (if any)
-	_connect_all_checkboxes()
-
-	# Detect dynamically added HBoxes (e.g., AI-generated or user-added steps)
-	steps_container.child_entered_tree.connect(_on_child_added)
-
-
 # --- When a new step (HBox with CheckBox) is added ---
 func _on_child_added(child: Node) -> void:
 	if child is HBoxContainer:
@@ -40,7 +33,9 @@ func _connect_all_checkboxes() -> void:
 				if sub is CheckBox:
 					if not sub.is_connected("toggled", Callable(self, "_on_update_subtask")):
 						sub.connect("toggled", Callable(self, "_on_update_subtask"))
-	_on_update_subtask()
+	# Recalculate based on current state
+	_on_update_subtask(true)
+
 
 
 func _on_update_subtask(_toggled: bool = false) -> void:
@@ -79,3 +74,40 @@ func _on_complete_task() -> void:
 
 func _on_close_requested() -> void:
 	hide()
+
+func load_task_from_global() -> void:
+	if not global.saved_tasks.has(global.current_furniture):
+		print("⚠️ No task found for:", global.current_furniture)
+		return
+
+	var task_data = global.saved_tasks[global.current_furniture]
+	print("🪑 Loading task:", task_data)
+
+	task_name_input.text = task_data.get("name", "")
+	description_input.text = task_data.get("description", "")
+
+	# --- Clear any existing steps first ---
+	for child in steps_container.get_children():
+		steps_container.remove_child(child)
+		child.free()
+
+	# --- Recreate steps from saved data ---
+	var steps = task_data.get("steps", [])
+	for i in range(steps.size()):
+		var hbox := HBoxContainer.new()
+		var checkbox := CheckBox.new()
+		var step_input := LineEdit.new()
+
+		step_input.placeholder_text = "Step %d" % (i + 1)
+		step_input.text = steps[i]
+		step_input.custom_minimum_size = Vector2(545, 0)
+
+		hbox.add_child(checkbox)
+		hbox.add_child(step_input)
+		steps_container.add_child(hbox)
+
+		# Always connect once
+		checkbox.connect("toggled", Callable(self, "_on_update_subtask"))
+
+	# --- Update button status properly ---
+	_on_update_subtask(true)
