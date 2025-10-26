@@ -40,6 +40,7 @@ stop_process() {
 
 stop_process "MCP server" "${MCP_PID:-}"
 stop_process "FastAPI" "${API_PID:-}"
+stop_process "Agent relay" "${AGENT_PID:-}"
 
 rm -f "$PID_FILE"
 echo "Stack stopped."
