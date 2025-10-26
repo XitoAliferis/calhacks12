@@ -36,6 +36,6 @@ func get_task(id: String) -> Dictionary:
 var room_types = [
 	"res://scenes/room_layout_1.tscn",
 	"res://scenes/room_layout_2.tscn",
-	"res://scenes/room_layout_3.tscn"
-	
+	"res://scenes/room_layout_3.tscn",
+	"res://scenes/room_layout_4.tscn"
 ]
