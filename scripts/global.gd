@@ -15,3 +15,20 @@ var furniture = [
 	"res://scenes/furniture/9.tscn",
 	"res://scenes/furniture/10.tscn"
 ]
+var saved_tasks := {}
+var current_furniture: String = ""
+
+func save_task(id: String, name: String, description: String, steps: Array) -> void:
+	saved_tasks[id] = {
+		"name": name,
+		"description": description,
+		"steps": steps
+	}
+	print(saved_tasks[id])
+	print("wowowowowo")
+	
+func get_task(id: String) -> Dictionary:
+	if saved_tasks.has(id):
+		return saved_tasks[id]
+	return {}
+	

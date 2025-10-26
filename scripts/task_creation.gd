@@ -16,6 +16,7 @@ const OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 const OPENROUTER_KEY = "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"
 
 var is_loading := false
+var current_furniture_id := ""
 
 func _ready() -> void:
 	hide()
@@ -95,6 +96,8 @@ func _on_save() -> void:
 	print("Steps:", steps)
 
 	hide()
+	current_furniture_id = global.current_furniture
+	global.save_task(current_furniture_id, task_name, description, steps)
 	global.creating_task = false
 	successful_creation.emit()
 
