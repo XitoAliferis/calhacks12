@@ -64,6 +64,22 @@ These steps assume you have Postman Desktop or Postman Web set up.
 - URL: `{{base_url}}/todos/{id}/complete`
 - No body required; sets the status to `done`.
 
+### Agent Relay (third server)
+- Add another environment variable `agent_base_url` (default `http://127.0.0.1:8300`).
+- Start the relay (`uv run uvicorn app.agent_server:app --port 8300 --reload`).
+- Method: `POST`
+- URL: `{{agent_base_url}}/agents/run`
+- Body example:
+```json
+{
+  "provider": "fetchai",
+  "model": "default",
+  "user_input": "Summarize today's standup",
+  "metadata": {"team": "demo"}
+}
+```
+- Response will include the provider, chosen model, generated `output`, raw payload, and whether the local fallback was used.
+
 ### Get Todo Tree
 - Method: `GET`
 - URL: `{{base_url}}/todos/tree`

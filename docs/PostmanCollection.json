@@ -169,6 +169,25 @@
         }
       },
       "response": []
+    },
+    {
+      "name": "Agent Relay Run",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"provider\": \"fetchai\",\n  \"model\": null,\n  \"user_input\": \"Summarize today\\u2019s progress\"\n}"
+        ],
+        "url": {
+          "raw": "{{agent_base_url}}/agents/run",
+          "host": ["{{agent_base_url}}"],
+          "path": ["agents", "run"]
+        }
+      },
+      "response": []
     }
   ],
   "event": [
@@ -188,6 +207,7 @@
     }
   ],
   "variable": [
-    {"key": "base_url", "value": "http://127.0.0.1:8000"}
+    {"key": "base_url", "value": "http://127.0.0.1:8000"},
+    {"key": "agent_base_url", "value": "http://127.0.0.1:8300"}
   ]
 }

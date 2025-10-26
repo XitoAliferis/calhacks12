@@ -49,7 +49,7 @@ Core endpoints: `/ai/generate`, `/todos`, `/todos/tree`, `/memory/search`, `/hea
 
 Docs & tool catalog: `docs/MCPGuide.md` (also exposed as `mcp://docs/mcp-guide`). `docs/PostmanMCP.json` imports directly into Postman.
 
-Available tools mirror the REST surface (`health`, `ai_generate`, `create_todo`, `list_todos`, `update_todo`, `delete_todo`, `todo_tree`, `memory_search`). Resources also expose `docs/API.md` for agent reference.
+Available tools mirror the REST surface (`health`, `ai_generate`, `create_todo`, `list_todos`, `update_todo`, `delete_todo`, `complete_todo`, `todo_tree`, `memory_search`). Resources also expose `docs/API.md` for agent reference.
 
 Try it interactively with the MCP Inspector:
 ```bash
@@ -58,10 +58,19 @@ npx @modelcontextprotocol/inspector uv run python -m app.mcp_server --transport 
 
 ---
 
-## 4. One-Command Stack Scripts
+## 4. Agent Relay (Provider Switchboard)
+- Run: `uv run uvicorn app.agent_server:app --host 0.0.0.0 --port 8300 --reload`
+- Endpoint: `POST /agents/run` with body `{ "provider": "fetchai|janitorai|wordware|letta", "model": "optional", "user_input": "...", "metadata": {...} }`
+- Responses include the provider, model, generated `output`, raw payload, and a `used_fallback` flag (true when we fall back to the local Claude planner).
+- Configure provider URLs/API keys in `.env` (`FETCHAI_BASE_URL`, `JANITORAI_BASE_URL`, `WORDWARE_BASE_URL`, `LETTA_BASE_URL`). If a provider is missing or errors out, the fallback keeps UX smooth.
+- Docs + Postman samples: see `docs/API.md`, `docs/Postman.md`, and `docs/PostmanCollection.json`.
+
+---
+
+## 5. One-Command Stack Scripts
 Located under `scripts/`:
-- `start_stack.sh` – runs FastAPI (`uv run uvicorn ...`) + MCP HTTP (`uv run python -m app.mcp_server --transport http --port 8766`) simultaneously, logs to `.logs/`, stores PIDs in `.stack_pids`.
-- `stop_stack.sh` – reads `.stack_pids`, stops both processes cleanly.
+- `start_stack.sh` – launches FastAPI (port 8000), MCP HTTP (port 8766), and the Agent Relay (port 8300) together, logging to `.logs/` and storing PIDs in `.stack_pids`.
+- `stop_stack.sh` – reads `.stack_pids`, stops all three processes cleanly.
 
 Use these from the `backends/` directory:
 ```bash
@@ -73,7 +82,7 @@ scripts/stop_stack.sh
 
 ---
 
-## 5. Testing & Tooling
+## 6. Testing & Tooling
 - Unit tests: `uv run pytest` (see `tests/` for service coverage).
 - Lint: `uv run ruff check`.
 - Type checking: `uv run mypy app`.
@@ -82,7 +91,7 @@ scripts/stop_stack.sh
 
 ---
 
-## 6. Integration Notes
+## 7. Integration Notes
 - Godot clients hit the REST interface (`docs/GodotIntegration.md`).
 - Agents / Creao connect through MCP via stdio or HTTP.
 - For offline demos, rely on mock data + `MOCK_AI_RESPONSES_FILE`.

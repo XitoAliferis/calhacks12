@@ -31,6 +31,17 @@ class Settings(BaseSettings):
     RATE_LIMIT_REQUESTS: int = 60
     RATE_LIMIT_WINDOW_SECONDS: int = 60
 
+    FETCHAI_API_KEY: str | None = None
+    FETCHAI_BASE_URL: str | None = None
+    JANITORAI_API_KEY: str | None = None
+    JANITORAI_BASE_URL: str | None = None
+    WORDWARE_API_KEY: str | None = None
+    WORDWARE_BASE_URL: str | None = None
+    LETTA_API_KEY: str | None = None
+    LETTA_BASE_URL: str | None = None
+    AGENT_HTTP_TIMEOUT: float = 30.0
+    AGENT_FALLBACK_ENABLED: bool = True
+
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
 

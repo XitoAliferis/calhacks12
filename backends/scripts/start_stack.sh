@@ -18,6 +18,10 @@ if [[ -f "$PID_FILE" ]]; then
     echo "FastAPI server already running (pid $API_PID). Stop it before starting again." >&2
     exit 1
   fi
+  if [[ -n "${AGENT_PID:-}" ]] && kill -0 "$AGENT_PID" 2>/dev/null; then
+    echo "Agent server already running (pid $AGENT_PID). Stop it before starting again." >&2
+    exit 1
+  fi
 fi
 
 cd "$ROOT_DIR"
@@ -33,9 +37,16 @@ API_PID=$!
 
 echo "FastAPI server started (pid $API_PID). Logs: $LOG_DIR/api.log"
 
+uv run uvicorn app.agent_server:app --host 0.0.0.0 --port 8300 --reload \
+  > "$LOG_DIR/agent.log" 2>&1 &
+AGENT_PID=$!
+
+echo "Agent relay server started (pid $AGENT_PID). Logs: $LOG_DIR/agent.log"
+
 cat > "$PID_FILE" <<PIDS
 MCP_PID=$MCP_PID
 API_PID=$API_PID
+AGENT_PID=$AGENT_PID
 PIDS
 
-echo "Stack running. Use scripts/stop_stack.sh to stop both services."
+echo "Stack running. Use scripts/stop_stack.sh to stop all services."
