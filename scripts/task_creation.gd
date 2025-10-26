@@ -1,61 +1,75 @@
 extends Window
 
-signal successful_creation
-
 @onready var task_name_input = $VBoxContainer/LineEdit
 @onready var description_input = $VBoxContainer/TextEdit
 @onready var steps_container = $VBoxContainer/ScrollContainer/StepsContainer
 @onready var finish_button = $VBoxContainer/HBoxContainer/Button
 @onready var add_new_step_button = $VBoxContainer/HBoxContainer/Button2
 @onready var remove_step_button = $VBoxContainer/HBoxContainer/Button3
+@onready var ai_button = $VBoxContainer/Button2
 @onready var scroll = $VBoxContainer/ScrollContainer
+@onready var http_request = $HTTPRequest  # reference to the HTTPRequest node
+
+const OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
+const OPENROUTER_KEY = ""
+
+var is_loading := false
 
 func _ready() -> void:
 	hide()
+	ai_button.disabled = true
 	remove_step_button.hide()
 	connect("close_requested", Callable(self, "_on_close_requested"))
 	finish_button.pressed.connect(_on_save)
 	add_new_step_button.pressed.connect(_on_add_new_step)
 	remove_step_button.pressed.connect(_on_remove_step)
+	ai_button.pressed.connect(_on_ai_pressed)
+	http_request.request_completed.connect(_on_request_completed)
+	description_input.text_changed.connect(_on_edit_description)
 
 func _on_close_requested() -> void:
 	hide()
 	global.creating_task = false
+	
+func _on_edit_description() -> void:
+	if OPENROUTER_KEY.length() == 0:
+		return
+	if description_input.text.length() == 0:
+		ai_button.disabled = true
+	else:
+		ai_button.disabled = false
+	
+# --- ADD STEP ---
 
 func _on_add_new_step() -> void:
 	var step_count = steps_container.get_child_count() + 1
 	if steps_container.get_child_count() > 0:
 		remove_step_button.show()
-		
+
 	var new_step = LineEdit.new()
 	new_step.placeholder_text = "Step %d" % step_count
 	steps_container.add_child(new_step)
 
-	# Wait one frame so UI updates, then scroll to bottom
 	await get_tree().process_frame
 	scroll.scroll_vertical = scroll.get_v_scroll_bar().max_value
 
-
+# --- REMOVE STEP ---
 func _on_remove_step() -> void:
 	if steps_container.get_child_count() == 1:
 		remove_step_button.hide()
 		return
-	
-	# Get the last step LineEdit in the container
+
 	var last_step = steps_container.get_child(steps_container.get_child_count() - 1)
-	
-	# Remove and free it from memory
 	steps_container.remove_child(last_step)
 	last_step.queue_free()
-	
-	# If no steps remain, hide the remove button
+
 	if steps_container.get_child_count() == 1:
 		remove_step_button.hide()
-	
-	# Wait one frame so UI updates, then scroll to bottom
+
 	await get_tree().process_frame
 	scroll.scroll_vertical = scroll.get_v_scroll_bar().max_value
 
+# --- SAVE BUTTON ---
 func _on_save() -> void:
 	var task_name = task_name_input.text.strip_edges()
 	var description = description_input.text.strip_edges()
@@ -70,10 +84,97 @@ func _on_save() -> void:
 	print("=== New Task ===")
 	print("Task Name:", task_name)
 	print("Description:", description)
-	print("Steps:")
-	for s in steps:
-		print(" -", s)
+	print("Steps:", steps)
 
 	hide()
 	global.creating_task = false
-	successful_creation.emit()
+
+# --- AI BUTTON ---
+func _on_ai_pressed() -> void:
+	var description_text = description_input.text.strip_edges()
+	if description_text.length() == 0:
+		print("Error")
+		return
+	print("AI request started...")
+	ai_button.text = "Generating steps..."
+	var headers = [
+		"Content-Type: application/json",
+		"Authorization: Bearer %s" % OPENROUTER_KEY,
+		"HTTP-Referer: https://your-site-url.com",
+		"X-Title: Godot Task App"
+	]
+	# Construct the message prompt dynamically
+	var body = {
+		"model": "openai/gpt-oss-20b",  # ⚡ super fast model
+		"messages": [
+			{
+				"role": "user",
+				"content": "respond in this format (4 steps max but do only as many as necessary, just tell me the steps, don't overthink, barely think, the steps should be short bullets). do not show anything thinking, just the answer:\n\n" +
+				"your message should look like:\n" +
+				"\"step 1: describe step\nstep 2: describe step\nstep 3: describe step\nstep x: ...\"\n\n" +
+				"the description we want you to step:\n" + description_text
+			}
+		]
+	}
+
+	http_request.request(
+		OPENROUTER_URL,
+		headers,
+		HTTPClient.METHOD_POST,
+		JSON.stringify(body)
+	)
+	
+func _on_request_completed(result_code, response_code, headers, body):
+	if response_code != 200:
+		print("API Error:", response_code)
+		print(body.get_string_from_utf8())
+		return
+
+	var json = JSON.parse_string(body.get_string_from_utf8())
+	if json == null or not json.has("choices") or json.choices.is_empty():
+		print("Unexpected response:", json)
+		return
+
+	var message = json.choices[0].message.content
+	var cut_index = message.rfind("</think>")
+	if cut_index != -1:
+		message = message.substr(cut_index + "</think>".length()).strip_edges()
+
+	print("AI Response:", message)
+
+	# --- Parse each "step X: ..." line ---
+	var step_lines = message.split("\n", false)
+	var steps: Array = []
+
+	for line in step_lines:
+		line = line.strip_edges()
+		if line == "":
+			continue
+		var regex = RegEx.new()
+		regex.compile("(?i)^step\\s*\\d+:\\s*(.*)")
+		var match = regex.search(line)
+		if match and match.get_string(1).strip_edges() != "":
+			steps.append(match.get_string(1).strip_edges())
+
+	# --- Clear all old steps ---
+	for child in steps_container.get_children():
+		child.queue_free()
+
+	# --- Add the AI-generated steps ---
+	for i in range(steps.size()):
+		var step_input := LineEdit.new()
+		step_input.placeholder_text = "Step %d" % (i + 1)
+		step_input.text = steps[i]
+		steps_container.add_child(step_input)
+
+	# --- Add one new blank step at the end ---
+	var next_index := steps.size() + 1
+	var new_empty_step := LineEdit.new()
+	new_empty_step.placeholder_text = "Step %d" % next_index
+	steps_container.add_child(new_empty_step)
+
+	remove_step_button.show()
+	await get_tree().process_frame
+	scroll.scroll_vertical = scroll.get_v_scroll_bar().max_value
+	ai_button.text = "Generate Steps with AI 🪄"
+	

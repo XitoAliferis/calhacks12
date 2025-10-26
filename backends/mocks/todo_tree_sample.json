@@ -1,0 +1,23 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "title": "Parent task",
+      "reason": "demo data",
+      "priority": "medium",
+      "status": "pending",
+      "deadline": null,
+      "children": [
+        {
+          "id": 2,
+          "title": "Child task",
+          "reason": null,
+          "priority": "low",
+          "status": "pending",
+          "deadline": null,
+          "children": []
+        }
+      ]
+    }
+  ]
+}
