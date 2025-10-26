@@ -80,7 +80,6 @@ func _on_update_subtask(_toggled: bool = false) -> void:
 
 # --- Handle completion ---
 func _on_complete_task() -> void:
-	print("✅ Task completed:", task_name_input.text)
 	task_complete.emit()
 	hide()
 
@@ -90,7 +89,6 @@ func _on_close_requested() -> void:
 	
 func load_task_from_global() -> void:
 	if not global.saved_tasks.has(global.current_furniture):
-		print("⚠️ No task found for:", global.current_furniture)
 		return
 
 	var task_data = global.saved_tasks[global.current_furniture]
