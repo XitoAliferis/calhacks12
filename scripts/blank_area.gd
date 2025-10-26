@@ -43,7 +43,6 @@ func _on_task_marker_button_mouse_exited() -> void:
 
 func _on_task_marker_button_pressed() -> void:
 	# open task view gui
-	finish_task()
 	if $PickFurniture/Window.visible: return
 	global.current_furniture = id
 	if $TodoList/Window.visible: $TodoList/Window.visible = false
