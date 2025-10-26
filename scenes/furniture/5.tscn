@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://c254j6n3x4r6j" path="res://assets/furniture/Slice 117.png" id="1_mhfjp"]
 
 [node name="Furniture" type="Node2D"]
-scale = Vector2(4, 4)
 
 [node name="Slice7" type="Sprite2D" parent="."]
 texture = ExtResource("1_mhfjp")

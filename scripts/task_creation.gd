@@ -1,7 +1,9 @@
 extends Window
 
+signal successful_creation
+
 @onready var task_name_input = $VBoxContainer/LineEdit
-@onready var description_input = $VBoxContainer/LineEdit2
+@onready var description_input = $VBoxContainer/TextEdit
 @onready var steps_container = $VBoxContainer/ScrollContainer/StepsContainer
 @onready var finish_button = $VBoxContainer/HBoxContainer/Button
 @onready var add_new_step_button = $VBoxContainer/HBoxContainer/Button2
@@ -74,3 +76,4 @@ func _on_save() -> void:
 
 	hide()
 	global.creating_task = false
+	successful_creation.emit()

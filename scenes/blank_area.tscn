@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bvhsi72x780v8"]
+[gd_scene load_steps=7 format=3 uid="uid://bvhsi72x780v8"]
 
 [ext_resource type="Script" uid="uid://m4c5k4xudguh" path="res://scripts/blank_area.gd" id="1_t08ef"]
 [ext_resource type="Texture2D" uid="uid://celcs7g1ei76m" path="res://assets/buttons/task marker.png" id="2_25tjb"]
-[ext_resource type="PackedScene" uid="uid://bjresqrfrcnj3" path="res://scenes/popup.tscn" id="3_imn18"]
+[ext_resource type="PackedScene" uid="uid://ccnrycgwckgtb" path="res://scenes/popup.tscn" id="3_imn18"]
+[ext_resource type="PackedScene" uid="uid://dto650t263as" path="res://scenes/pick_furniture.tscn" id="4_i2bmn"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_25tjb"]
 
@@ -31,6 +32,9 @@ icon = ExtResource("2_25tjb")
 flat = true
 
 [node name="Popup" parent="." instance=ExtResource("3_imn18")]
+visible = false
+
+[node name="PickFurniture" parent="." instance=ExtResource("4_i2bmn")]
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="mouse_entered" from="TaskMarkerButton" to="." method="_on_task_marker_button_mouse_entered"]
