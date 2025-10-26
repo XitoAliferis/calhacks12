@@ -40,3 +40,70 @@ Traceback (most recent call last):
   File "/Users/ethanpan/Library/CloudStorage/GoogleDrive-pyy122759996@gmail.com/Other computers/My MacBook Pro/code/calhacks12/backends/.venv/lib/python3.12/site-packages/anyio/streams/memory.py", line 93, in receive_nowait
     raise ClosedResourceError
 anyio.ClosedResourceError
+INFO:     127.0.0.1:58717 - "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:58718 - "GET /apple-touch-icon.png HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:58719 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:58716 - "GET /mcp HTTP/1.1" 406 Not Acceptable
+Error in message router
+Traceback (most recent call last):
+  File "/Users/ethanpan/Library/CloudStorage/GoogleDrive-pyy122759996@gmail.com/Other computers/My MacBook Pro/code/calhacks12/backends/.venv/lib/python3.12/site-packages/mcp/server/streamable_http.py", line 831, in message_router
+    async for session_message in write_stream_reader:
+  File "/Users/ethanpan/Library/CloudStorage/GoogleDrive-pyy122759996@gmail.com/Other computers/My MacBook Pro/code/calhacks12/backends/.venv/lib/python3.12/site-packages/anyio/abc/_streams.py", line 41, in __anext__
+    return await self.receive()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ethanpan/Library/CloudStorage/GoogleDrive-pyy122759996@gmail.com/Other computers/My MacBook Pro/code/calhacks12/backends/.venv/lib/python3.12/site-packages/anyio/streams/memory.py", line 111, in receive
+    return self.receive_nowait()
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ethanpan/Library/CloudStorage/GoogleDrive-pyy122759996@gmail.com/Other computers/My MacBook Pro/code/calhacks12/backends/.venv/lib/python3.12/site-packages/anyio/streams/memory.py", line 93, in receive_nowait
+    raise ClosedResourceError
+anyio.ClosedResourceError
+INFO:     127.0.0.1:58724 - "GET /mcp HTTP/1.1" 406 Not Acceptable
+ERROR:mcp.server.streamable_http:Error in message router
+Traceback (most recent call last):
+  File "/Users/ethanpan/Library/CloudStorage/GoogleDrive-pyy122759996@gmail.com/Other computers/My MacBook Pro/code/calhacks12/backends/.venv/lib/python3.12/site-packages/mcp/server/streamable_http.py", line 831, in message_router
+    async for session_message in write_stream_reader:
+  File "/Users/ethanpan/Library/CloudStorage/GoogleDrive-pyy122759996@gmail.com/Other computers/My MacBook Pro/code/calhacks12/backends/.venv/lib/python3.12/site-packages/anyio/abc/_streams.py", line 41, in __anext__
+    return await self.receive()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ethanpan/Library/CloudStorage/GoogleDrive-pyy122759996@gmail.com/Other computers/My MacBook Pro/code/calhacks12/backends/.venv/lib/python3.12/site-packages/anyio/streams/memory.py", line 111, in receive
+    return self.receive_nowait()
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ethanpan/Library/CloudStorage/GoogleDrive-pyy122759996@gmail.com/Other computers/My MacBook Pro/code/calhacks12/backends/.venv/lib/python3.12/site-packages/anyio/streams/memory.py", line 93, in receive_nowait
+    raise ClosedResourceError
+anyio.ClosedResourceError
+INFO:     127.0.0.1:58724 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:58727 - "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:58728 - "GET /apple-touch-icon.png HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:58729 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:58726 - "GET /mcp HTTP/1.1" 406 Not Acceptable
+ERROR:mcp.server.streamable_http:Error in message router
+Traceback (most recent call last):
+  File "/Users/ethanpan/Library/CloudStorage/GoogleDrive-pyy122759996@gmail.com/Other computers/My MacBook Pro/code/calhacks12/backends/.venv/lib/python3.12/site-packages/mcp/server/streamable_http.py", line 831, in message_router
+    async for session_message in write_stream_reader:
+  File "/Users/ethanpan/Library/CloudStorage/GoogleDrive-pyy122759996@gmail.com/Other computers/My MacBook Pro/code/calhacks12/backends/.venv/lib/python3.12/site-packages/anyio/abc/_streams.py", line 41, in __anext__
+    return await self.receive()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ethanpan/Library/CloudStorage/GoogleDrive-pyy122759996@gmail.com/Other computers/My MacBook Pro/code/calhacks12/backends/.venv/lib/python3.12/site-packages/anyio/streams/memory.py", line 111, in receive
+    return self.receive_nowait()
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ethanpan/Library/CloudStorage/GoogleDrive-pyy122759996@gmail.com/Other computers/My MacBook Pro/code/calhacks12/backends/.venv/lib/python3.12/site-packages/anyio/streams/memory.py", line 93, in receive_nowait
+    raise ClosedResourceError
+anyio.ClosedResourceError
+INFO:     127.0.0.1:58734 - "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:58735 - "GET /apple-touch-icon.png HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:58736 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:58733 - "GET /mcp HTTP/1.1" 406 Not Acceptable
+ERROR:mcp.server.streamable_http:Error in message router
+Traceback (most recent call last):
+  File "/Users/ethanpan/Library/CloudStorage/GoogleDrive-pyy122759996@gmail.com/Other computers/My MacBook Pro/code/calhacks12/backends/.venv/lib/python3.12/site-packages/mcp/server/streamable_http.py", line 831, in message_router
+    async for session_message in write_stream_reader:
+  File "/Users/ethanpan/Library/CloudStorage/GoogleDrive-pyy122759996@gmail.com/Other computers/My MacBook Pro/code/calhacks12/backends/.venv/lib/python3.12/site-packages/anyio/abc/_streams.py", line 41, in __anext__
+    return await self.receive()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ethanpan/Library/CloudStorage/GoogleDrive-pyy122759996@gmail.com/Other computers/My MacBook Pro/code/calhacks12/backends/.venv/lib/python3.12/site-packages/anyio/streams/memory.py", line 111, in receive
+    return self.receive_nowait()
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ethanpan/Library/CloudStorage/GoogleDrive-pyy122759996@gmail.com/Other computers/My MacBook Pro/code/calhacks12/backends/.venv/lib/python3.12/site-packages/anyio/streams/memory.py", line 93, in receive_nowait
+    raise ClosedResourceError
+anyio.ClosedResourceError
+INFO:     127.0.0.1:58764 - "GET / HTTP/1.1" 404 Not Found

@@ -1,0 +1,464 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "AI Task Backend MCP Server",
+    "version": "0.1.0",
+    "description": "MCP server exposing AI Task backend capabilities for Creao and agent integrations. Provides todo CRUD operations, AI-powered task generation, and semantic search."
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:8766/mcp",
+      "description": "Local MCP HTTP server"
+    }
+  ],
+  "security": [],
+  "paths": {
+    "/tools/call": {
+      "post": {
+        "summary": "Call MCP Tool",
+        "description": "Execute an MCP tool by name with provided arguments",
+        "operationId": "callTool",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/HealthRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/AIGenerateRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/CreateTodoRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/ListTodosRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/UpdateTodoRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/DeleteTodoRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/TodoTreeRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/MemorySearchRequest"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful tool execution",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MCPResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HealthRequest": {
+        "type": "object",
+        "required": ["jsonrpc", "id", "method", "params"],
+        "properties": {
+          "jsonrpc": {
+            "type": "string",
+            "enum": ["2.0"]
+          },
+          "id": {
+            "type": "integer"
+          },
+          "method": {
+            "type": "string",
+            "enum": ["tools/call"]
+          },
+          "params": {
+            "type": "object",
+            "required": ["name"],
+            "properties": {
+              "name": {
+                "type": "string",
+                "enum": ["health"]
+              },
+              "arguments": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      },
+      "AIGenerateRequest": {
+        "type": "object",
+        "required": ["jsonrpc", "id", "method", "params"],
+        "properties": {
+          "jsonrpc": {
+            "type": "string",
+            "enum": ["2.0"]
+          },
+          "id": {
+            "type": "integer"
+          },
+          "method": {
+            "type": "string",
+            "enum": ["tools/call"]
+          },
+          "params": {
+            "type": "object",
+            "required": ["name", "arguments"],
+            "properties": {
+              "name": {
+                "type": "string",
+                "enum": ["ai_generate"]
+              },
+              "arguments": {
+                "type": "object",
+                "required": ["user_input"],
+                "properties": {
+                  "user_input": {
+                    "type": "string",
+                    "description": "Natural language description of tasks to generate"
+                  },
+                  "save": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Whether to persist generated todos to database"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "CreateTodoRequest": {
+        "type": "object",
+        "required": ["jsonrpc", "id", "method", "params"],
+        "properties": {
+          "jsonrpc": {
+            "type": "string",
+            "enum": ["2.0"]
+          },
+          "id": {
+            "type": "integer"
+          },
+          "method": {
+            "type": "string",
+            "enum": ["tools/call"]
+          },
+          "params": {
+            "type": "object",
+            "required": ["name", "arguments"],
+            "properties": {
+              "name": {
+                "type": "string",
+                "enum": ["create_todo"]
+              },
+              "arguments": {
+                "type": "object",
+                "required": ["todo"],
+                "properties": {
+                  "todo": {
+                    "$ref": "#/components/schemas/TodoCreate"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "ListTodosRequest": {
+        "type": "object",
+        "required": ["jsonrpc", "id", "method", "params"],
+        "properties": {
+          "jsonrpc": {
+            "type": "string",
+            "enum": ["2.0"]
+          },
+          "id": {
+            "type": "integer"
+          },
+          "method": {
+            "type": "string",
+            "enum": ["tools/call"]
+          },
+          "params": {
+            "type": "object",
+            "required": ["name"],
+            "properties": {
+              "name": {
+                "type": "string",
+                "enum": ["list_todos"]
+              },
+              "arguments": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "string",
+                    "enum": ["pending", "in-progress", "done"]
+                  },
+                  "priority": {
+                    "type": "string",
+                    "enum": ["low", "medium", "high"]
+                  },
+                  "due_before": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "due_after": {
+                    "type": "string",
+                    "format": "date-time"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "UpdateTodoRequest": {
+        "type": "object",
+        "required": ["jsonrpc", "id", "method", "params"],
+        "properties": {
+          "jsonrpc": {
+            "type": "string",
+            "enum": ["2.0"]
+          },
+          "id": {
+            "type": "integer"
+          },
+          "method": {
+            "type": "string",
+            "enum": ["tools/call"]
+          },
+          "params": {
+            "type": "object",
+            "required": ["name", "arguments"],
+            "properties": {
+              "name": {
+                "type": "string",
+                "enum": ["update_todo"]
+              },
+              "arguments": {
+                "type": "object",
+                "required": ["todo_id", "fields"],
+                "properties": {
+                  "todo_id": {
+                    "type": "integer"
+                  },
+                  "fields": {
+                    "$ref": "#/components/schemas/TodoUpdate"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "DeleteTodoRequest": {
+        "type": "object",
+        "required": ["jsonrpc", "id", "method", "params"],
+        "properties": {
+          "jsonrpc": {
+            "type": "string",
+            "enum": ["2.0"]
+          },
+          "id": {
+            "type": "integer"
+          },
+          "method": {
+            "type": "string",
+            "enum": ["tools/call"]
+          },
+          "params": {
+            "type": "object",
+            "required": ["name", "arguments"],
+            "properties": {
+              "name": {
+                "type": "string",
+                "enum": ["delete_todo"]
+              },
+              "arguments": {
+                "type": "object",
+                "required": ["todo_id"],
+                "properties": {
+                  "todo_id": {
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "TodoTreeRequest": {
+        "type": "object",
+        "required": ["jsonrpc", "id", "method", "params"],
+        "properties": {
+          "jsonrpc": {
+            "type": "string",
+            "enum": ["2.0"]
+          },
+          "id": {
+            "type": "integer"
+          },
+          "method": {
+            "type": "string",
+            "enum": ["tools/call"]
+          },
+          "params": {
+            "type": "object",
+            "required": ["name"],
+            "properties": {
+              "name": {
+                "type": "string",
+                "enum": ["todo_tree"]
+              },
+              "arguments": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      },
+      "MemorySearchRequest": {
+        "type": "object",
+        "required": ["jsonrpc", "id", "method", "params"],
+        "properties": {
+          "jsonrpc": {
+            "type": "string",
+            "enum": ["2.0"]
+          },
+          "id": {
+            "type": "integer"
+          },
+          "method": {
+            "type": "string",
+            "enum": ["tools/call"]
+          },
+          "params": {
+            "type": "object",
+            "required": ["name", "arguments"],
+            "properties": {
+              "name": {
+                "type": "string",
+                "enum": ["memory_search"]
+              },
+              "arguments": {
+                "type": "object",
+                "required": ["query"],
+                "properties": {
+                  "query": {
+                    "type": "string",
+                    "description": "Search query for semantic task search"
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "default": 5,
+                    "description": "Maximum number of results to return"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "TodoCreate": {
+        "type": "object",
+        "required": ["title"],
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          },
+          "reason": {
+            "type": "string",
+            "maxLength": 1000
+          },
+          "priority": {
+            "type": "string",
+            "enum": ["low", "medium", "high"],
+            "default": "medium"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["pending", "in-progress", "done"],
+            "default": "pending"
+          },
+          "deadline": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "parent_id": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      },
+      "TodoUpdate": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          },
+          "reason": {
+            "type": "string",
+            "maxLength": 1000
+          },
+          "priority": {
+            "type": "string",
+            "enum": ["low", "medium", "high"]
+          },
+          "status": {
+            "type": "string",
+            "enum": ["pending", "in-progress", "done"]
+          },
+          "deadline": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "MCPResponse": {
+        "type": "object",
+        "properties": {
+          "jsonrpc": {
+            "type": "string",
+            "enum": ["2.0"]
+          },
+          "id": {
+            "type": "integer"
+          },
+          "result": {
+            "type": "object",
+            "description": "Tool execution result"
+          },
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "integer"
+              },
+              "message": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
