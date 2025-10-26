@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4bnid8kxtpwt"]
+
+[ext_resource type="Texture2D" uid="uid://c2f3uhre2ip4n" path="res://assets/hi crater.jpeg" id="1_cairq"]
+[ext_resource type="Texture2D" uid="uid://b5bx7ltfqanc0" path="res://assets/chatbox.png" id="2_gly4w"]
+
+[node name="Cow" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-80, 42)
+scale = Vector2(0.29852942, 0.29852942)
+texture = ExtResource("1_cairq")
+
+[node name="Textbox" type="Sprite2D" parent="."]
+position = Vector2(92, -42.000004)
+scale = Vector2(2.1, 2.1458333)
+texture = ExtResource("2_gly4w")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Textbox"]
+offset_left = -29.047623
+offset_top = -13.514563
+offset_right = 35.952393
+offset_bottom = 5.825243

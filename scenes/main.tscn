@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://dfegkpn7tbawy"]
+[gd_scene load_steps=10 format=4 uid="uid://dfegkpn7tbawy"]
 
 [ext_resource type="TileSet" uid="uid://ck4pdlhc3his1" path="res://resources/floor_tileset.tres" id="1_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://djfp3lhbqp05l" path="res://scenes/room_layout_1.tscn" id="1_sugp2"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cw11v8vhxyi7x" path="res://scenes/locked_room.tscn" id="5_tbgi4"]
 [ext_resource type="Script" uid="uid://cs18moed8w0dv" path="res://scripts/camera_2d.gd" id="6_tefeu"]
 [ext_resource type="PackedScene" uid="uid://ccxa3c4tmp5ca" path="res://scenes/cat.tscn" id="8_choun"]
+[ext_resource type="PackedScene" uid="uid://b4bnid8kxtpwt" path="res://scenes/cow.tscn" id="8_tipki"]
 
 [sub_resource type="GDScript" id="GDScript_tbgi4"]
 script/source = "extends Node
@@ -46,9 +47,6 @@ position = Vector2(157, 527)
 [node name="RoomLayout3" parent="." instance=ExtResource("3_tbgi4")]
 position = Vector2(989, 571)
 
-[node name="Cat" parent="." instance=ExtResource("8_choun")]
-position = Vector2(597, 310)
-
 [node name="LockedRoom7" parent="." instance=ExtResource("5_tbgi4")]
 position = Vector2(459, 132)
 required_tasks = 5
@@ -82,3 +80,9 @@ room_type = 5
 position = Vector2(883, 775)
 required_tasks = 7
 room_type = 5
+
+[node name="Cat" parent="." instance=ExtResource("8_choun")]
+position = Vector2(597, 310)
+
+[node name="Cow" parent="." instance=ExtResource("8_tipki")]
+position = Vector2(-1791, 2067)
